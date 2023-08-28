@@ -5,27 +5,18 @@ Project 4 with General Assembly
 
 ## :page_with_curl: About
 
-This is the last project with the General Assembly Bootcamp. We were given the opportunity to showcase our skills and creativity and create whatever we like!
+This is VOYAGE 2.0. It is a frontend-focus project that has comes from my original project [voyage](https://github.com/tinaaiscoding/voyage).
 
-My app main purpose is to plan your holiday itinerary. It will be integrating 3 different APIs.
-The idea was to use unrelated topics and make them relatable.
+There will be some internal and external API used for this project as it has already been implemented from the original project.
 
-External:
-- Weather API
-- Location API
+I wanted to recreate this project because I left the first original voyage incomplete and I have never been fully satisfied with that project. Now a couple months down the track, I have fresher ideas and more direction with how I want to complete VOYAGE 2.0. 
 
-Internal:
-- Clothing API
+My main focus will be on CSS and learning how to recreate the famous parallax scrolling effect for this project. I want to showcase and build on my frontend skills in this project.
 
-The app's main features will be for users to select their holiday destination, view the weather at the selected destinations, and produce a simple clothes packing guide.
-
-The app displays a map to show the selected destinations.
-
-Users can filter whether they want a summer or winter holiday, and if they have a specific date of travel, the app will display the countries in the desired weather conditions. *Coming soon...*
+There will be a full update to the README when the project is complete. But I wanted to just get on here to summarise the why I've decided to revamp this project 🤗
 
 ## :pencil2: Planning and Problem Solving
 **Initial planning:**
-- [Breakdown of the project](./readmeAttachments/Frontend_Plan.pdf) 
 - [Wireframing](./readmeAttachments/wireframe.png)
 - [Trello](./readmeAttachments/wireframe.png)
 
@@ -61,34 +52,13 @@ Syntactically Awesome Style Sheets
 
 React Router in web applications
 
-## :white_check_mark: Future features
-- Render differnt clothing depending on the weather
-- Be able to filter the locations by season
-- Sort the Itinerary list
-- Information card pop-up on the Maps page when the user clicks on a marker.
+<!-- ## :white_check_mark: Future features
+
 
 ## :warning: Bugs :bug:
-- Location API rendering some coordinates incorrectly on the map, e.g Abbotsford, VIC, AU
-- Edit feature is buggy in general, sometimes the page will go blank when you click 'edit'. Sometimes it renders incorrect infomation. Other times it works :disappointed_relieved:
+
 
 ## :sob: Major hurdles
-**The whole project!!!** 
 
-Kidding...
 
-In all honestly, the project was a big challenge. From the start, I had issues with my idea. I didn't know what I REALLY wanted to do, and that left me super uninspired. I was changing ideas as we were pitching it to the class.
-
-- useEffect
-I just didn't really know how to use this hook enough. Although I managed to get it to work, I'm not confidence in my understanding
-
-- Dropdown list
-Getting this to render the correct infomation on the Add Destination page was pretty straight-forward. It was when I had to do the same thing on the Edit Modal. That was a big nightmare, and it's still buggy. 
-
-All my CRUD features worked until I kept adding more to it...
-
-## Screenshots of the app 
-10/02/2023
-![Landing Page](./readmeAttachments/landingPage.png)
-![Add Destination Page](./readmeAttachments/addDestination.png)
-![Itinerary Page](./readmeAttachments/itinerary.png)
-![Map Page](./readmeAttachments/map.png)
+## Screenshots of the app  -->
