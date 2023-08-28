@@ -1,0 +1,53 @@
+label {
+  display: block;
+}
+
+#SignUp-Modal,
+#Login-Modal {
+  padding: 0;
+  height: 375px;
+
+  input {
+    display: inline-block;
+    margin: 3px;
+  }
+
+  form {
+    margin-top: 25px;
+  }
+
+  label {
+    letter-spacing: 0.8px;
+  }
+
+  button {
+    margin-top: 15px;
+  }
+
+  ul {
+    padding: 0;
+    border: 1px solid rgb(255, 170, 59);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  li {
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    padding: 20px 0;
+    color: rgb(255, 170, 59);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .button-80:not(:disabled):hover {
+    border: 1px solid #ff6b08e6;
+    color: #ff6600;
+  }
+}
+
+#Login-Modal {
+  height: 300px;
+}

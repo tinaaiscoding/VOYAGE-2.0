@@ -1,0 +1,130 @@
+.Itinerary {
+  background: url(../../images/compBg/background-6b.jpg);
+  background-size: cover;
+  // background-repeat: repeat-x repeat-y;
+  height: 100vh;
+  position: relative;
+
+  p {
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 2px;
+    text-align: left;
+  }
+
+  h1 {
+    color: rgb(94, 55, 103);
+    font-size: 3rem;
+    margin-top: 20px;
+    padding: 0;
+    margin-bottom: 0px;
+    margin-left: 50px;
+    font-family: 'Paytone One', sans-serif;
+    letter-spacing: 3px;
+  }
+}
+.itinerary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'header header'
+    'dest weather'
+    'dest clothes';
+}
+
+.itinerary-header {
+  grid-area: header;
+}
+
+.itinerary-destination-list {
+  grid-area: dest;
+  position: relative;
+}
+
+.destination-controls {
+  display: inline;
+  position: relative;
+  color: rgba(255, 228, 196, 0.577);
+  left: 0 span {
+    margin: 0 10px;
+  }
+}
+
+.weather-info {
+  grid-area: weather;
+}
+
+.clothes-to-pack-list {
+  grid-area: clothes;
+}
+
+.itinerary-card {
+  background-color: #3f1f5f9a;
+  border: 1px solid rgb(184, 156, 233);
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.itinerary-destination-list,
+.weather-info,
+.clothes-to-pack-list {
+  div.header {
+    background-color: rgba(208, 124, 94, 0.722);
+    padding: 0;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+    h2 {
+      text-align: center;
+      margin: 0;
+      padding: 15px;
+      color: rgb(255, 255, 255);
+      letter-spacing: 2px;
+    }
+  }
+
+  div.content {
+    padding: 15px 50px;
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.Avg-Weather {
+  text-align: center;
+  color: white;
+  .last-year-avg-temp {
+    font-size: 7rem;
+    font-weight: 700;
+  }
+}
+
+.clothes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'img1 img2 img3'
+    'img4 img5 img6'
+    'img7 img8 img9';
+
+  padding-bottom: 21px;
+}
+
+.Clothes {
+  .content {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    img {
+      width: 80px;
+      margin: 15px auto;
+    }
+  }
+}

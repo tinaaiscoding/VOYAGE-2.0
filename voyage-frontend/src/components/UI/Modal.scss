@@ -1,0 +1,55 @@
+/* MODAL BASE */
+.modal {
+  position: relative;
+  z-index: 100;
+  background: white;
+  border-radius: 10px;
+  width: 30%;
+  height: 400px;
+  top: -50vh;
+  left: 34%;
+  box-shadow: 12px 11px 1px 0px rgb(0 0 0 / 26%);
+  display: block;
+  padding: 40px;
+
+label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #464646;
+}
+
+input {
+  font: inherit;
+  border: 1px solid #ccc;
+  padding: 0.4rem 0.2rem;
+  color: #383838;
+}
+
+input:focus {
+  outline: none;
+  background: #fff1c4;
+}
+
+  
+  span {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    color: white;
+    font-weight: 900;
+  }
+  
+  button {
+    display: block;
+    margin: 10px auto;
+  }
+}
+
+@keyframes fade-slide-in {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

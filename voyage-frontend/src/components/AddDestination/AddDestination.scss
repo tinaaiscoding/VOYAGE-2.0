@@ -1,0 +1,78 @@
+.Add-Destination {
+  background: url(../../images/compBg/background-6a.jpg);
+  background-size: cover;
+  // background-repeat: repeat-x repeat-y;
+  height: 100vh;
+
+  p {
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 2px;
+    text-align: left;
+  }
+
+  h2 {
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    margin: 10px;
+    text-align: left;
+  }
+
+  h1 {
+    color: rgb(84, 103, 140);
+    font-size: 3rem;
+    margin-top: 50px;
+    padding: 0;
+    margin-bottom: 0;
+    margin-left: 400px;
+    font-family: 'Paytone One', sans-serif;
+    letter-spacing: 3px;
+  }
+}
+
+.add-destination-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'header header'
+    'form dest';
+}
+
+.add-destination-header {
+  grid-area: header;
+}
+.Add-Destination-List {
+  grid-area: dest;
+  width: 40%;
+  height: 70%;
+  justify-items: start;
+
+  div.header {
+    background-color: rgb(198, 60, 122);
+    padding: 0;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+    h2 {
+      margin: 0;
+      padding: 15px;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+  }
+
+  div.content {
+    padding: 15px 50px;
+  }
+}
+
+.add-destination-card {
+  background-color: #7f455db5;
+  border: 1px solid rgb(255, 107, 201);
+  border-radius: 20px;
+  margin: 80px;
+}
