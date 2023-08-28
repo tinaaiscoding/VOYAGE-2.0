@@ -1,6 +1,6 @@
 # :airplane: VOYAGE 2.0
 
-## :page_with_curl: About
+## About
 
 This is VOYAGE 2.0. It is a frontend-focus project that has comes from my original project [voyage](https://github.com/tinaaiscoding/voyage).
 
@@ -12,12 +12,12 @@ My main focus will be on CSS and learning how to recreate the famous parallax sc
 
 There will be a full update to the README when the project is complete. But I wanted to just get on here to summarise the why I've decided to revamp this project 🤗
 
-## :pencil2: Planning and Problem Solving
+## Planning and Problem Solving
 **Initial planning:**
 - [Wireframing](./readmeAttachments/wireframe.png)
 - [Trello](./readmeAttachments/wireframe.png)
 
-## :rocket: Technology used
+## Technology used
 - [React](https://reactjs.org/)
 - [Sass](https://sass-lang.com/)
 - [React Simple Maps](https://www.react-simple-maps.io/)

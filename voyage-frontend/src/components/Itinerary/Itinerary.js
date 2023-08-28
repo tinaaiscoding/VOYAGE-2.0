@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { getGeoLocation, getWeather } from '../../db/fetchWeather';
-import Clothes from './Clothes';
 import AvgWeather from './AvgWeather';
 import ItineraryDesList from './ItineraryDesList';
 
@@ -128,10 +127,6 @@ const Itinerary = (props) => {
           cityPrevWeatherData={cityPrevWeatherData}
           citySelected={citySelected}
         />
-      </div>
-
-      <div className="clothes-to-pack-list itinerary-card">
-        <Clothes />
       </div>
     </div>
   );
