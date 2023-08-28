@@ -1,5 +1,4 @@
-# :airplane: Vogage - Itinerary planning app
-Project 4 with General Assembly
+# :airplane: VOYAGE 2.0
 
 ## :page_with_curl: About
 
