@@ -1,8 +1,6 @@
 # :airplane: Vogage - Itinerary planning app
 Project 4 with General Assembly
 
-## :star: View my project [here](http://tinas-voyage.surge.sh/)! :eyes:
-
 ## :page_with_curl: About
 
 This is VOYAGE 2.0. It is a frontend-focus project that has comes from my original project [voyage](https://github.com/tinaaiscoding/voyage).
