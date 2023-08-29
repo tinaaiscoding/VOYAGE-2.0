@@ -2,14 +2,10 @@ import React from 'react';
 
 import './Main.scss'
 
-const Main = (props) => {
+const Main = () => {
   return (
-    <div className="main">
-      <p>PLAN YOUR NEXT DESTINATION</p>
-      <h1>voyage</h1>
-      <button className="button-17" onClick={props.renderSignUpModalHandler}>
-        LET'S PLAN
-      </button>
+    <div id="Main">
+      <h1>WHERE TO TODAY?</h1>
     </div>
   );
 };

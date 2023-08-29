@@ -1,24 +1,30 @@
 import { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import { DestinationContextProvider } from './components/Home/DestinationContext';
 
 import Home from './components/Home/Home';
-// import AddDestination from './components/Home/AddDestination/AddDestination';
 import Itinerary from './components/Itinerary/Itinerary';
+import NavBar from './components/NavBar';
 // import Map from './components/Map/Map';
+import SignUpModal from './components/Home/RegistationModals/SignUpModal';
 
 import './App.scss';
 
 function App() {
+  const [displaySignUpModal, setDisplaySignUpModal] = useState(false);
+
+  const renderSignUpModalHandler = () => {
+    setDisplaySignUpModal(true);
+  };
+
+  const closeSignUpModalHandler = () => {
+    setDisplaySignUpModal(false);
+  };
+  
   return (
     <div className="App">
-      <nav className="nav-bar">
-        <Link to="/">HOME</Link>
-        {/* <Link to="/add-destination">ADD DESTINATION</Link> */}
-        <Link to="/itinerary">ITINERARY</Link>
-        {/* <Link to="/map">MAP</Link> */}
-      </nav>
+      <NavBar renderSignUpModalHandler={renderSignUpModalHandler} />
 
       <Routes>
         <Route
@@ -50,6 +56,10 @@ function App() {
           }
         /> */}
       </Routes>
+
+      {displaySignUpModal && (
+        <SignUpModal onModalClose={closeSignUpModalHandler} />
+      )}
     </div>
   );
 }

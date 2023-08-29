@@ -2,7 +2,7 @@ import { useState } from 'react';
 import LoginModal from './LoginModal';
 import Modal from '../../UI/Modal';
 
-import './SignUpLoginModal.scss';
+import './RegistationModals.scss';
 
 const SignUpModal = (props) => {
   const closeSignUpModalHandler = () => {

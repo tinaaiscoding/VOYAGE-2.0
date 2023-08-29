@@ -19,7 +19,7 @@ const States = (props) => {
     <div className="States">
       <select
         name="states"
-        form="Add-Destination-Form"
+        form="Edit-Form"
         onChange={storeStateHandler}
         value={props.selectedState}
       >

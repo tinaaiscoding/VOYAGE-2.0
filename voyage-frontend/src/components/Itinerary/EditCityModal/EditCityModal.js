@@ -19,25 +19,26 @@ const EditCityModal = (props) => {
     cityList,
   } = useContext(DestinationContext);
 
+  const [editData, setEditData] = useState(destinationList[props.index]);
+  const [countryCode, setCountryCode] = useState(initialCountryCode);
+  const [stateCode, setStateCode] = useState(initialStateCode);
+  const [editStateList, setEditStateList] = useState(stateList);
+  const [editCityList, setEditCityList] = useState(cityList);
+
   let initialCountryCode = '';
+  let initialStateCode = '';
+
   countryList.forEach((countryItem) => {
     if (countryItem.name === destinationList[props.index].country) {
       initialCountryCode = countryItem.iso2;
     }
   });
 
-  let initialStateCode = '';
   stateList.forEach((stateItem) => {
     if (stateItem.name === destinationList[props.index].state) {
       initialStateCode = stateItem.iso2;
     }
   });
-
-  const [editData, setEditData] = useState(destinationList[props.index]);
-  const [countryCode, setCountryCode] = useState(initialCountryCode);
-  const [stateCode, setStateCode] = useState(initialStateCode);
-  const [editStateList, setEditStateList] = useState(stateList);
-  const [editCityList, setEditCityList] = useState(cityList);
 
   const countryChangeHandler = (country) => {
     setEditData((prevState) => {
@@ -68,8 +69,6 @@ const EditCityModal = (props) => {
         state: state,
       };
     });
-
-    console.log(editData);
   };
 
   const cityChangeHandler = (city) => {

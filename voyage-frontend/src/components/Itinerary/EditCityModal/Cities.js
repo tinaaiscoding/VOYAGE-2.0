@@ -8,7 +8,7 @@ const Cities = (props) => {
       props.setEditCityList(res);
     });
   }, [props.stateCode]);
-  console.log(props.editCityList);
+
   const storeCityHandler = (event) => {
     const citySelected = event.target.value;
 
@@ -19,7 +19,7 @@ const Cities = (props) => {
     <div className="Cities">
       <select
         name="cities"
-        form="Add-Destination-Form"
+        form="Edit-Form"
         onChange={storeCityHandler}
         value={props.selectedCity}
       >

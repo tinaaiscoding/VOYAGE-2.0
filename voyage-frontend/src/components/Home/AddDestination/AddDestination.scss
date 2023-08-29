@@ -1,8 +1,5 @@
-.Add-Destination {
-  background: url(../../../images/compBg/background-6a.jpg);
-  background-size: cover;
-  // background-repeat: repeat-x repeat-y;
-  height: 100vh;
+#AddDestination {
+  // height: 80vh;
 
   p {
     letter-spacing: 2px;
@@ -35,10 +32,9 @@
 .add-destination-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    'header header'
     'form dest';
 }
 
