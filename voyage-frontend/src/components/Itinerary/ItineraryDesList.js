@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DestinationContext } from '../Home/DestinationContext';
+
 import EditCityModal from './EditCityModal/EditCityModal';
 
 const ItineraryDesList = (props) => {
+  const { destinationList } = useContext(DestinationContext);
+
   return (
     <div className="Itinerary-Des-List">
       <div className="header">
@@ -10,7 +14,7 @@ const ItineraryDesList = (props) => {
       </div>
 
       <div className="content">
-        {props.destinationList.map(
+        {destinationList.map(
           (destination, index) =>
             Object.keys(destination).length > 0 && (
               <div key={index} className="destination-list-item">
@@ -42,17 +46,7 @@ const ItineraryDesList = (props) => {
         {props.displayEditModal && (
           <EditCityModal
             onModalClose={props.closeEditModalHandler}
-            destinationData={props.destinationData}
-            setDestinationData={props.setDestinationData}
-            destinationList={props.destinationList}
-            setDestinationList={props.setDestinationList}
             index={props.citySelected.index}
-            countryList={props.countryList}
-            setCountryList={props.setCountryList}
-            stateList={props.stateList}
-            setStateList={props.setStateList}
-            cityList={props.cityList}
-            setCityList={props.setCityList}
           />
         )}
       </div>

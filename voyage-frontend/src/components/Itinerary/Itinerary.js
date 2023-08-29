@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { DestinationContext } from '../Home/DestinationContext';
+
 import { getGeoLocation, getWeather } from '../../db/fetchWeather';
 import AvgWeather from './AvgWeather';
 import ItineraryDesList from './ItineraryDesList';
@@ -6,6 +8,8 @@ import ItineraryDesList from './ItineraryDesList';
 import './Itinerary.scss';
 
 const Itinerary = (props) => {
+  const { destinationList, setDestinationList } =
+    useContext(DestinationContext);
   const [citySelected, setCitySelected] = useState({});
   const [cityPrevWeatherData, setCityPrevWeatherData] = useState([]);
   const [displayEditModal, setDisplayEditModal] = useState(false);
@@ -46,11 +50,11 @@ const Itinerary = (props) => {
   };
 
   const deleteCityHandler = (indexOfCity) => {
-    const remainingCities = props.destinationList.filter(
+    const remainingCities = destinationList.filter(
       (city, i) => i !== indexOfCity
     );
-    
-    props.setDestinationList(remainingCities);
+
+    setDestinationList(remainingCities);
   };
 
   const renderEditModalHandler = (indexOfCity) => {
@@ -74,21 +78,12 @@ const Itinerary = (props) => {
       </div>
       <div className="itinerary-destination-list itinerary-card">
         <ItineraryDesList
-          destinationData={props.destinationData}
-          destinationList={props.destinationList}
-          setDestinationList={props.setDestinationList}
           renderEditModalHandler={renderEditModalHandler}
           deleteCityHandler={deleteCityHandler}
           displayEditModal={displayEditModal}
           citySelected={citySelected}
           closeEditModalHandler={closeEditModalHandler}
           fetchWeatherDataHandler={fetchWeatherDataHandler}
-          countryList={props.countryList}
-          setCountryList={props.setCountryList}
-          stateList={props.stateList}
-          setStateList={props.setStateList}
-          cityList={props.cityList}
-          setCityList={props.setCityList}
         />
       </div>
 

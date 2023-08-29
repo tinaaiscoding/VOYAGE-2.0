@@ -5,7 +5,7 @@ import Main from './Main';
 import AddDestination from './AddDestination/AddDestination';
 import SignUpModal from './SignUpLoginModal/SignUpModal';
 
-import './Home.scss'
+import './Home.scss';
 
 const Home = (props) => {
   const [displaySignUpModal, setDisplaySignUpModal] = useState(false);
@@ -20,25 +20,13 @@ const Home = (props) => {
 
   return (
     <div className="home">
-      <Main renderSignUpModalHandler={renderSignUpModalHandler}/>
-     
-      <AddDestination
-        destinationData={props.destinationData}
-        setDestinationData={props.setDestinationData}
-        destinationList={props.destinationList}
-        setDestinationList={props.setDestinationList}
-        countryList={props.countryList}
-        setCountryList={props.setCountryList}
-        stateList={props.stateList}
-        setStateList={props.setStateList}
-        cityList={props.cityList}
-        setCityList={props.setCityList}
-      />
-      
+      <Main renderSignUpModalHandler={renderSignUpModalHandler} />
+
+      <AddDestination />
+
       {displaySignUpModal && (
         <SignUpModal onModalClose={closeSignUpModalHandler} />
       )}
-    
     </div>
   );
 };

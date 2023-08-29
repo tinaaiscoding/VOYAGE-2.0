@@ -1,28 +1,16 @@
 import { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+
+import { DestinationContextProvider } from './components/Home/DestinationContext';
 
 import Home from './components/Home/Home';
 // import AddDestination from './components/Home/AddDestination/AddDestination';
 import Itinerary from './components/Itinerary/Itinerary';
 // import Map from './components/Map/Map';
 
-import { Routes, Route, Link } from 'react-router-dom';
-
 import './App.scss';
 
 function App() {
-  const [destinationData, setDestinationData] = useState({
-    country: '',
-    state: '',
-    city: '',
-    dateFrom: '',
-    dateTo: '',
-  });
-  const [destinationList, setDestinationList] = useState([]);
-
-  const [countryList, setCountryList] = useState([]);
-  const [stateList, setStateList] = useState([]);
-  const [cityList, setCityList] = useState([]);
-
   return (
     <div className="App">
       <nav className="nav-bar">
@@ -33,39 +21,21 @@ function App() {
       </nav>
 
       <Routes>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
-            <Home 
-              destinationData={destinationData}
-              setDestinationData={setDestinationData}
-              destinationList={destinationList}
-              setDestinationList={setDestinationList}
-              countryList={countryList}
-              setCountryList={setCountryList}
-              stateList={stateList}
-              setStateList={setStateList}
-              cityList={cityList}
-              setCityList={setCityList}
-            />
-          } 
+            <DestinationContextProvider>
+              <Home />
+            </DestinationContextProvider>
+          }
         />
-       
+
         <Route
           path="/itinerary"
           element={
-            <Itinerary
-              destinationData={destinationData}
-              setDestinationData={setDestinationData}
-              destinationList={destinationList}
-              setDestinationList={setDestinationList}
-              countryList={countryList}
-              setCountryList={setCountryList}
-              stateList={stateList}
-              setStateList={setStateList}
-              cityList={cityList}
-              setCityList={setCityList}
-            />
+            <DestinationContextProvider>
+              <Itinerary />
+            </DestinationContextProvider>
           }
         />
         {/* <Route

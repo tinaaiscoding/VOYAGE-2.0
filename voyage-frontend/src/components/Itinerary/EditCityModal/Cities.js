@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import fetchCities from '../../../db/fetchCities';
 
@@ -8,7 +8,7 @@ const Cities = (props) => {
       props.setEditCityList(res);
     });
   }, [props.stateCode]);
-console.log(props.editCityList)
+  console.log(props.editCityList);
   const storeCityHandler = (event) => {
     const citySelected = event.target.value;
 

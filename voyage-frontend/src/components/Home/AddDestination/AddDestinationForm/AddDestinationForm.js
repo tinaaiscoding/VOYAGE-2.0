@@ -1,4 +1,5 @@
-import { useState} from 'react';
+import { useContext, useState } from 'react';
+import { DestinationContext } from '../../DestinationContext';
 
 import Countries from './Countries.js';
 import States from './States.js';
@@ -10,18 +11,26 @@ import DateSelector from './DateSelector.js';
 import './AddDestinationForm.scss';
 
 const AddDestinationForm = (props) => {
+  const {
+    destinationData,
+    setDestinationData,
+    destinationList,
+    setDestinationList,
+    countryList,
+    stateList,
+  } = useContext(DestinationContext);
   const [countryCode, setCountryCode] = useState('');
   const [stateCode, setStateCode] = useState('');
 
   const countryChangeHandler = (country) => {
-    props.setDestinationData((prevState) => {
+    setDestinationData((prevState) => {
       return {
         ...prevState,
         country: country,
       };
     });
 
-    props.countryList.forEach((countryItem) => {
+    countryList.forEach((countryItem) => {
       if (countryItem.name === country) {
         setCountryCode(countryItem.iso2);
       }
@@ -29,14 +38,14 @@ const AddDestinationForm = (props) => {
   };
 
   const stateChangeHandler = (state) => {
-    props.setDestinationData((prevState) => {
+    setDestinationData((prevState) => {
       return {
         ...prevState,
         state: state,
       };
     });
 
-    props.stateList.forEach((stateItem) => {
+    stateList.forEach((stateItem) => {
       if (stateItem.name === state) {
         setStateCode(stateItem.iso2);
       }
@@ -44,7 +53,7 @@ const AddDestinationForm = (props) => {
   };
 
   const cityChangeHandler = (city) => {
-    props.setDestinationData((prevState) => {
+    setDestinationData((prevState) => {
       return {
         ...prevState,
         city: city,
@@ -53,7 +62,7 @@ const AddDestinationForm = (props) => {
   };
 
   const dateFromChangeHandler = (event) => {
-    props.setDestinationData((prevState) => {
+    setDestinationData((prevState) => {
       return {
         ...prevState,
         dateFrom: event.target.value,
@@ -62,7 +71,7 @@ const AddDestinationForm = (props) => {
   };
 
   const dateToChangeHandler = (event) => {
-    props.setDestinationData((prevState) => {
+    setDestinationData((prevState) => {
       return {
         ...prevState,
         dateTo: event.target.value,
@@ -73,9 +82,9 @@ const AddDestinationForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    props.setDestinationList([...props.destinationList, props.destinationData]);
+    setDestinationList([...destinationList, destinationData]);
 
-    props.setDestinationData({
+    setDestinationData({
       country: '',
       state: '',
       city: '',
@@ -83,46 +92,32 @@ const AddDestinationForm = (props) => {
       dateTo: '',
       season: [],
     });
-
   };
-
 
   return (
     <div className="Add-Destination-Form add-destination-card">
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
         <p>SELECT YOUR DESTINATION</p>
-        <Countries
-          onSelectedCountry={countryChangeHandler}
-          selectedCountry={props.destinationData.country}
-          countryList={props.countryList}
-          setCountryList={props.setCountryList}
-        />
+        <Countries onSelectedCountry={countryChangeHandler} />
         <States
           onSelectState={stateChangeHandler}
-          selectedState={props.destinationData.state}
           selectedCountryCode={countryCode}
-          setCountryList={props.setCountryList}
-          stateList={props.stateList}
-          setStateList={props.setStateList}
         />
 
         <Cities
           onSelectCity={cityChangeHandler}
-          selectedCity={props.destinationData.city}
           selectedCountryCode={countryCode}
           selectedStateCode={stateCode}
-          cityList={props.cityList}
-          setCityList={props.setCityList}
         />
 
         <DateSelector
           onDateFromChange={dateFromChangeHandler}
           onDateToChange={dateToChangeHandler}
-          destinationData={props.destinationData}
-          setDestinationData={props.setDestinationData}
         />
 
-        <button className="button-80" type="submit">ADD</button>
+        <button className="button-80" type="submit">
+          ADD
+        </button>
       </form>
     </div>
   );

@@ -1,13 +1,18 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { DestinationContext } from '../../DestinationContext';
+
 import fetchCities from '../../../../db/fetchCities';
 
-import './AddDestinationForm.scss'
+import './AddDestinationForm.scss';
 
 const Cities = (props) => {
+  const { destinationData, cityList, setCityList } =
+    useContext(DestinationContext);
+
   useEffect(() => {
     fetchCities(props.selectedCountryCode, props.selectedStateCode).then(
       (res) => {
-        props.setCityList(res);
+        setCityList(res);
       }
     );
   }, [props.selectedStateCode]);
@@ -24,14 +29,14 @@ const Cities = (props) => {
         name="cities"
         form="Add-Destination-Form"
         onChange={storeCityHandler}
-        value={props.selectedCity}
+        value={destinationData.city}
         required
       >
         <option value="" disabled hidden>
           City
         </option>
-        {props.cityList.length > 0 &&
-          props.cityList.map((city, index) => {
+        {cityList.length > 0 &&
+          cityList.map((city, index) => {
             return (
               <option key={index} value={city.name}>
                 {city.name}

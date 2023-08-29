@@ -1,8 +1,13 @@
+import { useContext } from 'react';
+import { DestinationContext } from '../../DestinationContext';
+
 import { today, next365Days } from '../../../../date.js';
 
-import './AddDestinationForm.scss'
+import './AddDestinationForm.scss';
 
 const DateSelector = (props) => {
+  const { destinationData } = useContext(DestinationContext);
+
   return (
     <div className="Date-Selector">
       <p>DATES</p>
@@ -11,16 +16,16 @@ const DateSelector = (props) => {
         type="date"
         min={today}
         onChange={props.onDateFromChange}
-        value={props.destinationData.dateFrom}
+        value={destinationData.dateFrom}
         required
       />
       <label>TO</label>
       <input
         type="date"
-        min={props.destinationData.dateFrom}
+        min={destinationData.dateFrom}
         max={next365Days}
         onChange={props.onDateToChange}
-        value={props.destinationData.dateTo}
+        value={destinationData.dateTo}
         required
       />
     </div>

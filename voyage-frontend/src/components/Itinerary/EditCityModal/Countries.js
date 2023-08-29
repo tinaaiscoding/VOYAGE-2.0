@@ -1,4 +1,9 @@
+import { useContext } from 'react';
+import { DestinationContext } from '../../Home/DestinationContext';
+
 const Countries = (props) => {
+  const { countryList } = useContext(DestinationContext);
+
   const storeCountryHandler = (event) => {
     const countrySelected = event.target.value;
 
@@ -13,7 +18,7 @@ const Countries = (props) => {
         onChange={storeCountryHandler}
         value={props.selectedCountry}
       >
-        {props.countryList.map((country, index) => {
+        {countryList.map((country, index) => {
           return (
             <option key={index} value={country.name}>
               {country.name}

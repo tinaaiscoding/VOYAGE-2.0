@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DestinationContext } from '../DestinationContext';
 
-const AddDestinationList = (props) => {
+const AddDestinationList = () => {
+  const { destinationList } = useContext(DestinationContext);
+
   return (
     <div className="Add-Destination-List add-destination-card">
       <div className="header">
         <h2>DESTINATIONS</h2>
       </div>
       <div className="content">
-        {props.destinationList.map(
+        {destinationList.map(
           (destination, index) =>
             Object.keys(destination).length > 0 && (
               <p key={index}>
