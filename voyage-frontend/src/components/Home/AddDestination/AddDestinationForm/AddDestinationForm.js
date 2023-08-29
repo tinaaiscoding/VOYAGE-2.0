@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 
 import Countries from './Countries.js';
 import States from './States.js';
 import Cities from './Cities.js';
 import DateSelector from './DateSelector.js';
-import SeasonFilter from './SeasonFilter.js';
 
-import { getGeoLocation } from '../../../db/fetchWeather.js';
+// import { getGeoLocation } from '../../../../db/fetchWeather.js';
 
 import './AddDestinationForm.scss';
 
@@ -71,25 +70,6 @@ const AddDestinationForm = (props) => {
     });
   };
 
-  const seasonChangeHandler = (event) => {
-    props.setDestinationData((prevState) => {
-      if (event.target.checked) {
-        return {
-          ...prevState,
-          season: [...props.destinationData.season, event.target.value],
-        };
-      } else {
-        const selectedSeason = props.destinationData.season.filter((season) => {
-          return season !== event.target.value;
-        });
-        return {
-          ...prevState,
-          season: selectedSeason,
-        };
-      }
-    });
-  };
-
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -104,32 +84,7 @@ const AddDestinationForm = (props) => {
       season: [],
     });
 
-    props.setMarkerInfo({ markerOffset: -8, name: '', coordinates: [] });
-
-    if (
-      props.destinationData.country === '' && props.destinationData.state === '' &&
-      props.destinationData.city === ''
-    ) {
-      console.log('No data to add to marker list');
-    } else {
-      props.setMarkerList([...props.markerList, props.markerInfo]);
-    }
   };
-
-  useEffect(() => {
-    async function getCoordinates() {
-      const geoLocation = await getGeoLocation(props.destinationData.city);
-      props.setMarkerInfo((prevState) => {
-        return {
-          ...prevState,
-          name: props.destinationData.city,
-          coordinates: [geoLocation.lng, geoLocation.lat],
-        };
-      });
-    }
-
-    getCoordinates();
-  }, [props.destinationData]);
 
 
   return (
@@ -166,7 +121,6 @@ const AddDestinationForm = (props) => {
           destinationData={props.destinationData}
           setDestinationData={props.setDestinationData}
         />
-        <SeasonFilter onFilterToggle={seasonChangeHandler} />
 
         <button className="button-80" type="submit">ADD</button>
       </form>

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import Home from './components/Home/Home';
-import AddDestination from './components/AddDestination/AddDestination';
+// import AddDestination from './components/Home/AddDestination/AddDestination';
 import Itinerary from './components/Itinerary/Itinerary';
-import Map from './components/Map/Map';
+// import Map from './components/Map/Map';
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -16,16 +16,9 @@ function App() {
     city: '',
     dateFrom: '',
     dateTo: '',
-    season: [],
   });
   const [destinationList, setDestinationList] = useState([]);
 
-  const [markerInfo, setMarkerInfo] = useState({
-    markerOffset: -8,
-    name: '',
-    coordinates: [],
-  });
-  const [markerList, setMarkerList] = useState([]);
   const [countryList, setCountryList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
@@ -34,25 +27,20 @@ function App() {
     <div className="App">
       <nav className="nav-bar">
         <Link to="/">HOME</Link>
-        <Link to="/add-destination">ADD DESTINATION</Link>
+        {/* <Link to="/add-destination">ADD DESTINATION</Link> */}
         <Link to="/itinerary">ITINERARY</Link>
-        <Link to="/map">MAP</Link>
+        {/* <Link to="/map">MAP</Link> */}
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/add-destination"
+        <Route 
+          path="/" 
           element={
-            <AddDestination
+            <Home 
               destinationData={destinationData}
               setDestinationData={setDestinationData}
               destinationList={destinationList}
               setDestinationList={setDestinationList}
-              markerInfo={markerInfo}
-              setMarkerInfo={setMarkerInfo}
-              markerList={markerList}
-              setMarkerList={setMarkerList}
               countryList={countryList}
               setCountryList={setCountryList}
               stateList={stateList}
@@ -60,8 +48,9 @@ function App() {
               cityList={cityList}
               setCityList={setCityList}
             />
-          }
+          } 
         />
+       
         <Route
           path="/itinerary"
           element={
@@ -70,10 +59,6 @@ function App() {
               setDestinationData={setDestinationData}
               destinationList={destinationList}
               setDestinationList={setDestinationList}
-              markerInfo={markerInfo}
-              setMarkerInfo={setMarkerInfo}
-              markerList={markerList}
-              setMarkerList={setMarkerList}
               countryList={countryList}
               setCountryList={setCountryList}
               stateList={stateList}
@@ -83,7 +68,7 @@ function App() {
             />
           }
         />
-        <Route
+        {/* <Route
           path="/map"
           element={
             <Map
@@ -93,7 +78,7 @@ function App() {
               setMarkerList={setMarkerList}
             />
           }
-        />
+        /> */}
       </Routes>
     </div>
   );

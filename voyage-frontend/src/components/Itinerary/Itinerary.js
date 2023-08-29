@@ -37,33 +37,9 @@ const Itinerary = (props) => {
       return {
         ...prevState,
         city: location.split(', ')[0],
-      };
-    });
-
-    setCitySelected((prevState) => {
-      return {
-        ...prevState,
         state: location.split(', ')[1],
-      };
-    });
-
-    setCitySelected((prevState) => {
-      return {
-        ...prevState,
         country: location.split(', ')[2],
-      };
-    });
-
-    setCitySelected((prevState) => {
-      return {
-        ...prevState,
         dateFrom: dateFrom,
-      };
-    });
-
-    setCitySelected((prevState) => {
-      return {
-        ...prevState,
         dateTo: dateTo,
       };
     });
@@ -75,12 +51,6 @@ const Itinerary = (props) => {
     );
     
     props.setDestinationList(remainingCities);
-
-    const remainingCitiesMarker = props.markerList.filter(
-      (city, i) => i !== indexOfCity
-    );
-
-    props.setMarkerList(remainingCitiesMarker);
   };
 
   const renderEditModalHandler = (indexOfCity) => {

@@ -1,9 +1,13 @@
 import { useState } from 'react';
+// import { Routes, Route, Link } from 'react-router-dom';
+
+import Main from './Main';
+import AddDestination from './AddDestination/AddDestination';
 import SignUpModal from './SignUpLoginModal/SignUpModal';
 
 import './Home.scss'
 
-const Home = () => {
+const Home = (props) => {
   const [displaySignUpModal, setDisplaySignUpModal] = useState(false);
 
   const renderSignUpModalHandler = () => {
@@ -16,15 +20,25 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className='home-header'>
-        <p>PLAN YOUR NEXT DESTINATION</p>
-        <h1>voyage</h1>
-      <button className='button-17' onClick={renderSignUpModalHandler}>LET'S PLAN</button>
-      </div>
-
+      <Main renderSignUpModalHandler={renderSignUpModalHandler}/>
+     
+      <AddDestination
+        destinationData={props.destinationData}
+        setDestinationData={props.setDestinationData}
+        destinationList={props.destinationList}
+        setDestinationList={props.setDestinationList}
+        countryList={props.countryList}
+        setCountryList={props.setCountryList}
+        stateList={props.stateList}
+        setStateList={props.setStateList}
+        cityList={props.cityList}
+        setCityList={props.setCityList}
+      />
+      
       {displaySignUpModal && (
         <SignUpModal onModalClose={closeSignUpModalHandler} />
       )}
+    
     </div>
   );
 };

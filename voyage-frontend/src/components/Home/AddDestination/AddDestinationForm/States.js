@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import fetchStates from '../../../db/fetchStates';
+import fetchStates from '../../../../db/fetchStates';
 
 const States = (props) => {
   useEffect(() => {

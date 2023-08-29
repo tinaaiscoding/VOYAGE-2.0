@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import fetchCities from '../../../db/fetchCities';
+import fetchCities from '../../../../db/fetchCities';
 
 import './AddDestinationForm.scss'
 
