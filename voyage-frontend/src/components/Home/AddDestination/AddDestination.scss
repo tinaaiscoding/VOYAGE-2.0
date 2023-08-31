@@ -3,7 +3,7 @@
 
   p {
     letter-spacing: 2px;
-    color: white;
+    color: rgb(0, 44, 109);
     font-weight: 700;
     margin-bottom: 2px;
     text-align: left;
@@ -11,22 +11,22 @@
 
   h2 {
     letter-spacing: 2px;
-    color: white;
+    color: rgb(0, 44, 109);
     font-weight: 700;
-    margin: 10px;
+    margin: 0 10px;
     text-align: left;
   }
 
-  h1 {
-    color: rgb(84, 103, 140);
-    font-size: 3rem;
-    margin-top: 50px;
-    padding: 0;
-    margin-bottom: 0;
-    margin-left: 400px;
-    font-family: 'Paytone One', sans-serif;
-    letter-spacing: 3px;
-  }
+  // h1 {
+  //   color: rgb(84, 103, 140);
+  //   font-size: 3rem;
+  //   margin-top: 50px;
+  //   padding: 0;
+  //   margin-bottom: 0;
+  //   margin-left: 400px;
+  //   font-family: 'Paytone One', sans-serif;
+  //   letter-spacing: 3px;
+  // }
 }
 
 .add-destination-grid {
@@ -48,7 +48,7 @@
   justify-items: start;
 
   div.header {
-    background-color: rgb(198, 60, 122);
+    background-color: #6ebaf0;
     padding: 0;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -67,8 +67,8 @@
 }
 
 .add-destination-card {
-  background-color: #7f455db5;
-  border: 1px solid rgb(255, 107, 201);
+  background-color: #eff6fc;;
+  border: 1px solid #3b88c0;
   border-radius: 20px;
   margin: 80px;
 }
