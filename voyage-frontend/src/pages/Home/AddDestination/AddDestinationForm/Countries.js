@@ -1,5 +1,7 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { DestinationContext } from '../../DestinationContext';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 import fetchCountries from '../../../../services/countriesAPI';
 
@@ -9,38 +11,38 @@ const Countries = (props) => {
   const { destinationData, countryList, setCountryList } =
     useContext(DestinationContext);
 
+  const [country, setCountry] = useState('');
+
   useEffect(() => {
     fetchCountries().then((res) => {
       setCountryList(res);
     });
   }, []);
 
-  const storeCountryHandler = (event) => {
-    const countrySelected = event.target.value;
-
-    props.onSelectedCountry(countrySelected);
+  const setCountryHandler = (event) => {
+    setCountry(event.target.value);
   };
+
+  useEffect(() => {
+    props.onSelectCountry(country);
+  }, [country]);
 
   return (
     <div className="Countries">
-      <select
-        name="country"
-        form="Add-Destination-Form"
-        onChange={storeCountryHandler}
-        value={destinationData.country}
-        required
-      >
-        <option value="" disabled hidden>
-          Country
-        </option>
-        {countryList.map((country, index) => {
-          return (
-            <option key={index} value={country.name}>
-              {country.name}
-            </option>
-          );
-        })}
-      </select>
+      <Autocomplete
+        disablePortal
+        id="countries"
+        options={countryList.map((country) => country.name)}
+        sx={{ width: 300 }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            name="country"
+            label="Country"
+            onSelect={setCountryHandler}
+          />
+        )}
+      />
     </div>
   );
 };

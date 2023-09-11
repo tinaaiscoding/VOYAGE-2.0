@@ -19,6 +19,7 @@ const AddDestinationForm = (props) => {
     countryList,
     stateList,
   } = useContext(DestinationContext);
+
   const [countryCode, setCountryCode] = useState('');
   const [stateCode, setStateCode] = useState('');
 
@@ -52,6 +53,15 @@ const AddDestinationForm = (props) => {
     });
   };
 
+  const cityChangeHandler = (city) => {
+    setDestinationData((prevState) => {
+      return {
+        ...prevState,
+        city: city,
+      };
+    });
+  };
+
   const changeHandler = (event) => {
     setDestinationData((prevState) => {
       return {
@@ -60,7 +70,6 @@ const AddDestinationForm = (props) => {
       };
     });
   };
-  
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -73,7 +82,6 @@ const AddDestinationForm = (props) => {
       city: '',
       dateFrom: '',
       dateTo: '',
-      season: [],
     });
   };
 
@@ -81,21 +89,16 @@ const AddDestinationForm = (props) => {
     <div id="AddDestinationForm" className="add-destination-card">
       <form className="Add-Destination-Form" onSubmit={submitHandler}>
         <p>SELECT YOUR DESTINATION</p>
-        <Countries onSelectedCountry={countryChangeHandler} />
-        <States
-          onSelectState={stateChangeHandler}
-          countryCode={countryCode}
-        />
+        <Countries onSelectCountry={countryChangeHandler} />
+        <States onSelectState={stateChangeHandler} countryCode={countryCode} />
 
         <Cities
-          changeHandler={changeHandler}
+          onSelectCity={cityChangeHandler}
           countryCode={countryCode}
           stateCode={stateCode}
         />
 
-        <DateSelector
-          changeHandler={changeHandler}
-        />
+        <DateSelector changeHandler={changeHandler} />
 
         <button className="button-80" type="submit">
           ADD
