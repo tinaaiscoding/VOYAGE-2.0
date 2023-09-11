@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { DestinationContext } from '../../DestinationContext';
 
-import fetchStates from '../../../../db/fetchStates';
+import fetchStates from '../../../../services/statesAPI';
 
 const States = (props) => {
   const { destinationData, stateList, setStateList } =

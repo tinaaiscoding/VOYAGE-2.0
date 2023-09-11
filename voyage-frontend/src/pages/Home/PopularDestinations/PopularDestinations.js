@@ -1,9 +1,9 @@
 import React from 'react';
 
 import './PopularDestinations.scss';
-import paris from '../../../images/destinations/paris.jpeg';
-import macchuPicchu from '../../../images/destinations/macchu-picchu.jpeg';
-import kyoto from '../../../images/destinations/kyoto.jpeg';
+import paris from '../../../assets/images/destinations/paris.jpeg';
+import macchuPicchu from '../../../assets/images/destinations/macchu-picchu.jpeg';
+import kyoto from '../../../assets/images/destinations/kyoto.jpeg';
 
 const PopularDestinations = () => {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import './Categories.scss';
-import beach from '../../../images/destinations/beach.jpeg';
-import hiking from '../../../images/destinations/hiking.webp';
-import family from '../../../images/destinations/family.jpeg';
+import beach from '../../../assets/images/destinations/beach.jpeg';
+import hiking from '../../../assets/images/destinations/hiking.webp';
+import family from '../../../assets/images/destinations/family.jpeg';
 
 const Categories = () => {
   return (

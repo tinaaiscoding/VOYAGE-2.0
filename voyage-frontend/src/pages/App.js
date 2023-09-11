@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { DestinationContextProvider } from './components/Home/DestinationContext';
+import { DestinationContextProvider } from './Home/DestinationContext';
 
-import Home from './components/Home/Home';
-import Itinerary from './components/Itinerary/Itinerary';
-import NavBar from './components/NavBar';
+import Home from './Home/Home';
+import Itinerary from './Itinerary/Itinerary';
+import NavBar from '../components/NavBar/NavBar';
 // import Map from './components/Map/Map';
-import SignUpModal from './components/Home/RegistationModals/SignUpModal';
+import SignUpModal from './Home/RegistationModals/SignUpModal';
 
 import './App.scss';
 

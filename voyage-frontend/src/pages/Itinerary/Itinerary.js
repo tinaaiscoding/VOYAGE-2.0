@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { DestinationContext } from '../Home/DestinationContext';
 
-import { getGeoLocation, getWeather } from '../../db/fetchWeather';
+import { getGeoLocation, getWeather } from '../../services/weatherAPI';
 import AvgWeather from './AvgWeather';
 import ItineraryDesList from './ItineraryDesList';
 

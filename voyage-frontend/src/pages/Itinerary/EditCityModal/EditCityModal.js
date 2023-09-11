@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { DestinationContext } from '../../Home/DestinationContext';
 
-import Modal from '../../UI/Modal';
+import Modal from '../../../components/UI/Modal';
 import Countries from './Countries';
 import States from './States';
 import Cities from './Cities';
 import DateSelector from './DateSelector';
-import fetchStates from '../../../db/fetchStates';
 
 import './EditCityModal.scss';
 

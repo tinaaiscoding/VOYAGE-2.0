@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { DestinationContext } from '../../DestinationContext';
 
-import fetchCities from '../../../../db/fetchCities';
+import fetchCities from '../../../../services/citiesAPI';
 
 import './AddDestinationForm.scss';
 

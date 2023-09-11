@@ -1,4 +1,4 @@
-import Main from './Main';
+import Main from './Main/Main';
 import AddDestination from './AddDestination/AddDestination';
 import Search from './Search/Search';
 import PopularDestinations from './PopularDestinations/PopularDestinations';
