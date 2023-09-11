@@ -17,18 +17,12 @@ const Cities = (props) => {
     );
   }, [props.stateCode]);
 
-  const storeCityHandler = (event) => {
-    const citySelected = event.target.value;
-
-    props.onSelectCity(citySelected);
-  };
-
   return (
     <div className="Cities">
       <select
-        name="cities"
+        name="city"
         form="Add-Destination-Form"
-        onChange={storeCityHandler}
+        onChange={props.changeHandler}
         value={destinationData.city}
         required
       >

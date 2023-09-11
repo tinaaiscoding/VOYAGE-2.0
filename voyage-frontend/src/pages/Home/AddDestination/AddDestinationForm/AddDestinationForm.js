@@ -52,32 +52,15 @@ const AddDestinationForm = (props) => {
     });
   };
 
-  const cityChangeHandler = (city) => {
+  const changeHandler = (event) => {
     setDestinationData((prevState) => {
       return {
         ...prevState,
-        city: city,
+        [event.target.name]: event.target.value,
       };
     });
   };
-
-  const dateFromChangeHandler = (event) => {
-    setDestinationData((prevState) => {
-      return {
-        ...prevState,
-        dateFrom: event.target.value,
-      };
-    });
-  };
-
-  const dateToChangeHandler = (event) => {
-    setDestinationData((prevState) => {
-      return {
-        ...prevState,
-        dateTo: event.target.value,
-      };
-    });
-  };
+  
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -105,14 +88,13 @@ const AddDestinationForm = (props) => {
         />
 
         <Cities
-          onSelectCity={cityChangeHandler}
+          changeHandler={changeHandler}
           countryCode={countryCode}
           stateCode={stateCode}
         />
 
         <DateSelector
-          onDateFromChange={dateFromChangeHandler}
-          onDateToChange={dateToChangeHandler}
+          changeHandler={changeHandler}
         />
 
         <button className="button-80" type="submit">

@@ -24,7 +24,7 @@ const Countries = (props) => {
   return (
     <div className="Countries">
       <select
-        name="countries"
+        name="country"
         form="Add-Destination-Form"
         onChange={storeCountryHandler}
         value={destinationData.country}

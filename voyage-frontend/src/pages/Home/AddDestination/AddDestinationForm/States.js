@@ -22,7 +22,7 @@ const States = (props) => {
   return (
     <div className="States">
       <select
-        name="States"
+        name="state"
         form="Add-Destination-Form"
         onChange={storeStateHandler}
         value={destinationData.state}
