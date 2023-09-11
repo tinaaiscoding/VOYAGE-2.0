@@ -8,10 +8,10 @@ const States = (props) => {
     useContext(DestinationContext);
 
   useEffect(() => {
-    fetchStates(props.selectedCountryCode).then((res) => {
+    fetchStates(props.countryCode).then((res) => {
       setStateList(res);
     });
-  }, [props.selectedCountryCode]);
+  }, [props.countryCode]);
 
   const storeStateHandler = (event) => {
     const stateSelected = event.target.value;

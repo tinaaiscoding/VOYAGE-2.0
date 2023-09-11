@@ -10,12 +10,12 @@ const Cities = (props) => {
     useContext(DestinationContext);
 
   useEffect(() => {
-    fetchCities(props.selectedCountryCode, props.selectedStateCode).then(
+    fetchCities(props.countryCode, props.stateCode).then(
       (res) => {
         setCityList(res);
       }
     );
-  }, [props.selectedStateCode]);
+  }, [props.stateCode]);
 
   const storeCityHandler = (event) => {
     const citySelected = event.target.value;

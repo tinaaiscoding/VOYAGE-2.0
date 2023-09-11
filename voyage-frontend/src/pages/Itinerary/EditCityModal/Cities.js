@@ -9,18 +9,12 @@ const Cities = (props) => {
     });
   }, [props.stateCode]);
 
-  const storeCityHandler = (event) => {
-    const citySelected = event.target.value;
-
-    props.onSelectCity(citySelected);
-  };
-
   return (
     <div className="Cities">
       <select
-        name="cities"
+        name="city"
         form="Edit-Form"
-        onChange={storeCityHandler}
+        onChange={props.changeHandler}
         value={props.selectedCity}
       >
         {props.editCityList.length > 0 &&

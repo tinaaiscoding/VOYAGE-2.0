@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 import { DestinationContext } from '../../Home/DestinationContext';
 
 import Modal from '../../../components/UI/Modal';
-import Countries from './Countries';
-import States from './States';
 import Cities from './Cities';
+import Countries from './Countries';
 import DateSelector from './DateSelector';
+import States from './States';
 
 import './EditCityModal.scss';
 
@@ -18,81 +18,19 @@ const EditCityModal = (props) => {
     cityList,
   } = useContext(DestinationContext);
 
+  const [initialCountryCode, setInitialCountryCode] = useState('');
+  const [initialStateCode, setInitialStateCode] = useState('');
   const [editData, setEditData] = useState(destinationList[props.index]);
   const [countryCode, setCountryCode] = useState(initialCountryCode);
   const [stateCode, setStateCode] = useState(initialStateCode);
   const [editStateList, setEditStateList] = useState(stateList);
   const [editCityList, setEditCityList] = useState(cityList);
 
-  let initialCountryCode = '';
-  let initialStateCode = '';
-
-  countryList.forEach((countryItem) => {
-    if (countryItem.name === destinationList[props.index].country) {
-      initialCountryCode = countryItem.iso2;
-    }
-  });
-
-  stateList.forEach((stateItem) => {
-    if (stateItem.name === destinationList[props.index].state) {
-      initialStateCode = stateItem.iso2;
-    }
-  });
-
-  const countryChangeHandler = (country) => {
+  const changeHandler = (event) => {
     setEditData((prevState) => {
       return {
         ...prevState,
-        country: country,
-      };
-    });
-
-    countryList.forEach((countryItem) => {
-      if (countryItem.name === country) {
-        setCountryCode(countryItem.iso2);
-        setEditData((prevState) => {
-          return {
-            ...prevState,
-          };
-        });
-
-        setStateCode('');
-      }
-    });
-  };
-
-  const stateChangeHandler = (state) => {
-    setEditData((prevState) => {
-      return {
-        ...prevState,
-        state: state,
-      };
-    });
-  };
-
-  const cityChangeHandler = (city) => {
-    setEditData((prevState) => {
-      return {
-        ...prevState,
-        city: city,
-      };
-    });
-  };
-
-  const dateFromChangeHandler = (event) => {
-    setEditData((prevState) => {
-      return {
-        ...prevState,
-        dateFrom: event.target.value,
-      };
-    });
-  };
-
-  const dateToChangeHandler = (event) => {
-    setEditData((prevState) => {
-      return {
-        ...prevState,
-        dateTo: event.target.value,
+        [event.target.name]: event.target.value,
       };
     });
   };
@@ -107,12 +45,40 @@ const EditCityModal = (props) => {
   };
 
   useEffect(() => {
+    countryList.forEach((countryItem) => {
+      if (countryItem.name === destinationList[props.index].country) {
+        setInitialCountryCode(countryItem.iso2);
+      }
+    });
+
+    stateList.forEach((stateItem) => {
+      if (stateItem.name === destinationList[props.index].state) {
+        setInitialStateCode(stateItem.iso2);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    countryList.forEach((countryItem) => {
+      if (countryItem.name === editData.country) {
+        setCountryCode(countryItem.iso2);
+        setEditData((prevState) => {
+          return {
+            ...prevState,
+          };
+        });
+      }
+    });
+    setStateCode('');
+  }, [editData.country]);
+
+  useEffect(() => {
     editStateList.forEach((stateItem) => {
       if (stateItem.name === editData.state) {
         setStateCode(stateItem.iso2);
       }
     });
-  }, [editData]);
+  }, [editData.state]);
 
   return (
     <Modal id="Edit-City-Modal">
@@ -126,18 +92,18 @@ const EditCityModal = (props) => {
       <div className="content">
         <form className="Edit-Destination-Form" onSubmit={editHandler}>
           <Countries
-            onSelectedCountry={countryChangeHandler}
+            changeHandler={changeHandler}
             selectedCountry={editData.country}
           />
           <States
-            onSelectState={stateChangeHandler}
+            changeHandler={changeHandler}
             selectedState={editData.state}
             countryCode={countryCode}
             editStateList={editStateList}
             setEditStateList={setEditStateList}
           />
           <Cities
-            onSelectCity={cityChangeHandler}
+            changeHandler={changeHandler}
             selectedCity={editData.city}
             editData={editData}
             countryCode={countryCode}
@@ -146,8 +112,7 @@ const EditCityModal = (props) => {
             setEditCityList={setEditCityList}
           />
           <DateSelector
-            onDateFromChange={dateFromChangeHandler}
-            onDateToChange={dateToChangeHandler}
+            changeHandler={changeHandler}
             selectedDateFrom={editData.dateFrom}
             selectedDateTo={editData.dateTo}
           />

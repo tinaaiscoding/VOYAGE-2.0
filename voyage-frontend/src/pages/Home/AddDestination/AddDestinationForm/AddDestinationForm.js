@@ -101,13 +101,13 @@ const AddDestinationForm = (props) => {
         <Countries onSelectedCountry={countryChangeHandler} />
         <States
           onSelectState={stateChangeHandler}
-          selectedCountryCode={countryCode}
+          countryCode={countryCode}
         />
 
         <Cities
           onSelectCity={cityChangeHandler}
-          selectedCountryCode={countryCode}
-          selectedStateCode={stateCode}
+          countryCode={countryCode}
+          stateCode={stateCode}
         />
 
         <DateSelector

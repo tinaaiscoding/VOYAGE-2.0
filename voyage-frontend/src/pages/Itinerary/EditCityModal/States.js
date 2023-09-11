@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import fetchStates from '../../../data/fetchStates';
+import fetchStates from '../../../services/statesAPI';
 
 const States = (props) => {
   useEffect(() => {
@@ -9,18 +9,12 @@ const States = (props) => {
     });
   }, [props.countryCode]);
 
-  const storeStateHandler = (event) => {
-    const stateSelected = event.target.value;
-
-    props.onSelectState(stateSelected);
-  };
-
   return (
     <div className="States">
       <select
-        name="states"
+        name="state"
         form="Edit-Form"
-        onChange={storeStateHandler}
+        onChange={props.changeHandler}
         value={props.selectedState}
       >
         {props.editStateList.length > 0 &&

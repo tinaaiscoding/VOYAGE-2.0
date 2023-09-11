@@ -4,18 +4,12 @@ import { DestinationContext } from '../../Home/DestinationContext';
 const Countries = (props) => {
   const { countryList } = useContext(DestinationContext);
 
-  const storeCountryHandler = (event) => {
-    const countrySelected = event.target.value;
-
-    props.onSelectedCountry(countrySelected);
-  };
-
   return (
     <div className="Countries">
       <select
-        name="countries"
+        name="country"
         form="Edit-Form"
-        onChange={storeCountryHandler}
+        onChange={props.changeHandler}
         value={props.selectedCountry}
       >
         {countryList.map((country, index) => {
