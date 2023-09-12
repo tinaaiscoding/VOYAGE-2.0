@@ -1,31 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext} from 'react';
 import { DestinationContext } from '../../DestinationContext';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-import fetchCountries from '../../../../services/countriesAPI';
-
 import './AddDestinationForm.scss';
 
-const Countries = (props) => {
-  const { destinationData, countryList, setCountryList } =
-    useContext(DestinationContext);
-
-  const [country, setCountry] = useState('');
-
-  useEffect(() => {
-    fetchCountries().then((res) => {
-      setCountryList(res);
-    });
-  }, []);
+const Countries = ({ changeHandler }) => {
+  const { countryList } = useContext(DestinationContext);
 
   const setCountryHandler = (event) => {
-    setCountry(event.target.value);
+    changeHandler(event);
   };
-
-  useEffect(() => {
-    props.onSelectCountry(country);
-  }, [country]);
+  console.log('hello!!!!')
 
   return (
     <div className="Countries">

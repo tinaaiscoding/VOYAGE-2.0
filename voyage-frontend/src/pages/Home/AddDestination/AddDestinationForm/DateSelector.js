@@ -5,8 +5,7 @@ import { today, next365Days } from '../../../../utils/date.js';
 
 import './AddDestinationForm.scss';
 
-const DateSelector = (props) => {
-  const { destinationData } = useContext(DestinationContext);
+const DateSelector = ({ destinationData, changeHandler }) => {
 
   return (
     <div className="Date-Selector">
@@ -16,7 +15,7 @@ const DateSelector = (props) => {
         name='dateFrom'
         type="date"
         min={today}
-        onChange={props.changeHandler}
+        onChange={changeHandler}
         value={destinationData.dateFrom}
         required
       />
@@ -26,7 +25,7 @@ const DateSelector = (props) => {
         type="date"
         min={destinationData.dateFrom}
         max={next365Days}
-        onChange={props.changeHandler}
+        onChange={changeHandler}
         value={destinationData.dateTo}
         required
       />

@@ -1,31 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { DestinationContext } from '../../DestinationContext';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-import fetchCities from '../../../../services/citiesAPI';
-
 import './AddDestinationForm.scss';
 
-const Cities = (props) => {
-  const { destinationData, cityList, setCityList } =
-    useContext(DestinationContext);
-
-  const [city, setCity] = useState('');
-
-  useEffect(() => {
-    fetchCities(props.countryCode, props.stateCode).then((res) => {
-      setCityList(res);
-    });
-  }, [props.stateCode]);
+const Cities = ({ changeHandler }) => {
+  const { cityList } = useContext(DestinationContext);
 
   const setCityHandler = (event) => {
-    setCity(event.target.value);
+    changeHandler(event);
   };
-
-  useEffect(() => {
-    props.onSelectCity(city);
-  }, [city]);
 
   return (
     <div className="Cities">
@@ -46,13 +31,15 @@ const Cities = (props) => {
           )}
         />
       ) : (
-        <Autocomplete
-          disabled
-          options={['Please select a state']}
-          renderInput={(params) => (
-            <TextField {...params} label="Please select a state" />
-          )}
-        />
+        <div>
+          <Autocomplete
+            disabled
+            options={['Please select a state']}
+            renderInput={(params) => (
+              <TextField {...params} label="Please select a state" />
+            )}
+          />
+        </div>
       )}
     </div>
   );

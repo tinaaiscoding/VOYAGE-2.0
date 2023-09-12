@@ -14,8 +14,8 @@ There will be a full update to the README when the project is complete. But I wa
 
 ## Planning and Problem Solving
 **Initial planning:**
-- [Wireframing](./readmeAttachments/wireframe.png)
-- [Trello](./readmeAttachments/wireframe.png)
+- [Wireframing](./readme_attachments/wireframe.png)
+- [Trello](./readme_attachments/wireframe.png)
 
 ## Technology used
 - [React](https://reactjs.org/)

@@ -1,29 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { DestinationContext } from '../../DestinationContext';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-import fetchStates from '../../../../services/statesAPI';
-
-const States = (props) => {
-  const { destinationData, stateList, setStateList } =
-    useContext(DestinationContext);
-
-  const [state, setState] = useState('');
-
-  useEffect(() => {
-    fetchStates(props.countryCode).then((res) => {
-      setStateList(res);
-    });
-  }, [props.countryCode]);
+const States = ({ changeHandler }) => {
+  const { stateList } = useContext(DestinationContext);
 
   const setStateHandler = (event) => {
-    setState(event.target.value);
+    changeHandler(event);
   };
 
-  useEffect(() => {
-    props.onSelectState(state);
-  }, [state]);
+  console.log(stateList.length);
 
   return (
     <div className="States">
@@ -43,13 +30,15 @@ const States = (props) => {
           )}
         />
       ) : (
-        <Autocomplete
-          disabled
-          options={['Please select a country']}
-          renderInput={(params) => (
-            <TextField {...params} label="Please select a country" />
-          )}
-        />
+        <div>
+          <Autocomplete
+            disabled
+            options={['Please select a country']}
+            renderInput={(params) => (
+              <TextField {...params} label="Please select a country" />
+            )}
+          />
+        </div>
       )}
     </div>
   );
