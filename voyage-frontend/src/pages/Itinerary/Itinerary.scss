@@ -1,20 +1,17 @@
 .Itinerary {
-  background: url(../../assets/images/compBg/background-6b.jpg);
-  background-size: cover;
-  // background-repeat: repeat-x repeat-y;
   height: 100vh;
   position: relative;
 
   p {
     letter-spacing: 2px;
-    color: white;
+    color: rgb(0, 44, 109);
     font-weight: 700;
     margin-bottom: 2px;
     text-align: left;
   }
 
   h1 {
-    color: rgb(94, 55, 103);
+    color: rgb(0, 44, 109);
     font-size: 3rem;
     margin-top: 20px;
     padding: 0;
@@ -62,8 +59,8 @@
 }
 
 .itinerary-card {
-  background-color: #3f1f5f9a;
-  border: 1px solid rgb(184, 156, 233);
+  background-color: #eff6fc;;
+  border: 1px solid #3b88c0;
   border-radius: 20px;
   margin: 20px;
 }
@@ -72,7 +69,7 @@
 .weather-info,
 .clothes-to-pack-list {
   div.header {
-    background-color: rgba(208, 124, 94, 0.722);
+    background-color: #6ebaf0;
     padding: 0;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -91,40 +88,6 @@
 
     p {
       font-size: 1.2rem;
-    }
-  }
-}
-
-.Avg-Weather {
-  text-align: center;
-  color: white;
-  .last-year-avg-temp {
-    font-size: 7rem;
-    font-weight: 700;
-  }
-}
-
-.clothes-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    'img1 img2 img3'
-    'img4 img5 img6'
-    'img7 img8 img9';
-
-  padding-bottom: 21px;
-}
-
-.Clothes {
-  .content {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    img {
-      width: 80px;
-      margin: 15px auto;
     }
   }
 }

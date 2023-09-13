@@ -3,8 +3,6 @@ import { DestinationContext } from '../../DestinationContext';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-import './AddDestinationForm.scss';
-
 const Cities = ({ changeHandler }) => {
   const { cityList } = useContext(DestinationContext);
 
@@ -16,9 +14,9 @@ const Cities = ({ changeHandler }) => {
     <div className="Cities">
       {cityList.length > 0 ? (
         <Autocomplete
-          name="city"
           disablePortal
           id="cities"
+          name="city"
           options={cityList.map((city) => city.name)}
           sx={{ width: 300 }}
           renderInput={(params) => (

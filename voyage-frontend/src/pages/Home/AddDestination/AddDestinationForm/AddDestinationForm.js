@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { DestinationContext } from '../../DestinationContext';
 
 import Countries from './Countries.js';
@@ -15,7 +15,7 @@ import fetchCities from '../../../../services/citiesAPI';
 import './AddDestinationForm.scss';
 
 const AddDestinationForm = (props) => {
-  console.log('hello');
+  // TO DO: clean up this file..
   const {
     destinationList,
     setDestinationList,
@@ -73,9 +73,7 @@ const AddDestinationForm = (props) => {
         setCountryCode(countryItem.iso2);
       }
     });
-  }, [destinationData.country]);
-
-  console.log(destinationData);
+  }, [countryList, destinationData.country]);
 
   useEffect(() => {
     stateList.forEach((stateItem) => {
@@ -83,7 +81,7 @@ const AddDestinationForm = (props) => {
         setStateCode(stateItem.iso2);
       }
     });
-  }, [destinationData.state]);
+  }, [stateList, destinationData.state]);
 
   const changeHandler = (event) => {
     setDestinationData((prevState) => {
@@ -107,7 +105,6 @@ const AddDestinationForm = (props) => {
       dateTo: '',
     });
 
-    // TO DO: Reset these list of render
     setStateList([]);
     setCityList([]);
   };

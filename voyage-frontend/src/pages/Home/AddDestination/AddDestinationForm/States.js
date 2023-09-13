@@ -4,13 +4,12 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
 const States = ({ changeHandler }) => {
-  const { stateList } = useContext(DestinationContext);
+  const { setCityList, stateList } = useContext(DestinationContext);
 
   const setStateHandler = (event) => {
     changeHandler(event);
+    setCityList([]);
   };
-
-  console.log(stateList.length);
 
   return (
     <div className="States">
@@ -18,6 +17,7 @@ const States = ({ changeHandler }) => {
         <Autocomplete
           disablePortal
           id="states"
+          name="state"
           options={stateList.map((state) => state.name)}
           sx={{ width: 300 }}
           renderInput={(params) => (

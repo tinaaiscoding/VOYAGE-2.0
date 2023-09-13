@@ -6,12 +6,13 @@ import TextField from '@mui/material/TextField';
 import './AddDestinationForm.scss';
 
 const Countries = ({ changeHandler }) => {
-  const { countryList } = useContext(DestinationContext);
+  const { setCityList, setStateList, countryList } = useContext(DestinationContext);
 
   const setCountryHandler = (event) => {
     changeHandler(event);
+    setStateList([]);
+    setCityList([]);
   };
-  console.log('hello!!!!')
 
   return (
     <div className="Countries">

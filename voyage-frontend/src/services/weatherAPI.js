@@ -17,4 +17,4 @@ async function getWeather(latitude, longitude, dateFrom, dateTo) {
   return data;
 }
 
-export { getGeoLocation, getWeather }
+export { getGeoLocation, getWeather };
