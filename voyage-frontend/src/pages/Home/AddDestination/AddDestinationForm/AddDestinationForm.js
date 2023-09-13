@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { DestinationContext } from '../../DestinationContext';
 
 import Countries from './Countries.js';
@@ -26,6 +27,7 @@ const AddDestinationForm = (props) => {
     setCityList,
   } = useContext(DestinationContext);
 
+  const navigate = useNavigate();
   const [countryCode, setCountryCode] = useState('');
   const [stateCode, setStateCode] = useState('');
   const [destinationData, setDestinationData] = useState({
@@ -107,6 +109,8 @@ const AddDestinationForm = (props) => {
 
     setStateList([]);
     setCityList([]);
+
+    navigate("/itinerary")
   };
 
   return (
