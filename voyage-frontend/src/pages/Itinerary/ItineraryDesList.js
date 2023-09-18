@@ -1,16 +1,33 @@
 import React, { useContext } from 'react';
 import { DestinationContext } from '../Home/DestinationContext';
 
-import EditCityModal from './EditCityModal/EditCityModal';
+import EditCityModal from '../../components/EditCityModal/EditCityModal';
 
-const ItineraryDesList = (props) => {
-  const { destinationList } = useContext(DestinationContext);
+const ItineraryDesList = ({
+  renderEditModalHandler,
+  deleteCityHandler,
+  displayEditModal,
+  citySelected,
+  closeEditModalHandler,
+  fetchWeatherDataHandler,
+  setFetching,
+}) => {
+  const { destinationList, setDestinationList } =
+    useContext(DestinationContext);
+
+  const handleClearList = () => {
+    setDestinationList([]);
+    setFetching(false);
+  };
 
   return (
     <div className="Itinerary-Des-List">
       <div className="header">
         <h2>DESTINATION</h2>
         {/* <button>SORT BY DATE</button> */}
+        <button onClick={handleClearList} className="button-80">
+          CLEAR LIST
+        </button>
       </div>
 
       <div className="content">
@@ -18,7 +35,7 @@ const ItineraryDesList = (props) => {
           (destination, index) =>
             Object.keys(destination).length > 0 && (
               <div key={index} className="destination-list-item">
-                <p onClick={props.fetchWeatherDataHandler}>
+                <p onClick={fetchWeatherDataHandler}>
                   {destination.city}, {destination.state}, {destination.country}
                 </p>
                 <div className="dates">
@@ -29,13 +46,13 @@ const ItineraryDesList = (props) => {
                 <div className="destination-controls">
                   <span
                     className="material-symbols-outlined"
-                    onClick={() => props.renderEditModalHandler(index)}
+                    onClick={() => renderEditModalHandler(index)}
                   >
                     edit
                   </span>
                   <span
                     className="material-symbols-outlined"
-                    onClick={() => props.deleteCityHandler(index)}
+                    onClick={() => deleteCityHandler(index)}
                   >
                     delete
                   </span>
@@ -43,10 +60,10 @@ const ItineraryDesList = (props) => {
               </div>
             )
         )}
-        {props.displayEditModal && (
+        {displayEditModal && (
           <EditCityModal
-            onModalClose={props.closeEditModalHandler}
-            index={props.citySelected.index}
+            onModalClose={closeEditModalHandler}
+            index={citySelected.index}
           />
         )}
       </div>

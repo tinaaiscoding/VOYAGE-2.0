@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { DestinationContext } from '../../Home/DestinationContext';
+import { DestinationContext } from '../../pages/Home/DestinationContext';
 
-import Modal from '../../../components/UI/Modal';
+import Modal from '../../components/UI/Modal';
 import Cities from './Cities';
 import Countries from './Countries';
 import DateSelector from './DateSelector';

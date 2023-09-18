@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { DestinationContext } from '../../DestinationContext';
+import { DestinationContext } from '../../pages/Home/DestinationContext';
 
 import Countries from './Countries.js';
 import States from './States.js';
 import Cities from './Cities.js';
 import DateSelector from './DateSelector.js';
 
-import fetchCountries from '../../../../services/countriesAPI';
-import fetchStates from '../../../../services/statesAPI';
-import fetchCities from '../../../../services/citiesAPI';
+import fetchCountries from '../../services/countriesAPI';
+import fetchStates from '../../services/statesAPI';
+import fetchCities from '../../services/citiesAPI';
 
 // import { getGeoLocation } from '../../../../db/fetchWeather.js';
 

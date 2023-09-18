@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import LoginModal from './LoginModal';
-import Modal from '../../../components/UI/Modal';
+import Modal from '../UI/Modal';
 
 import './RegistationModals.scss';
 

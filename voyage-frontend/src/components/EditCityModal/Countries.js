@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DestinationContext } from '../../Home/DestinationContext';
+import { DestinationContext } from '../../pages/Home/DestinationContext';
 
 const Countries = (props) => {
   const { countryList } = useContext(DestinationContext);

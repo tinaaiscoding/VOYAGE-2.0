@@ -1,7 +1,4 @@
-import { useContext } from 'react';
-import { DestinationContext } from '../../DestinationContext';
-
-import { today, next365Days } from '../../../../utils/date.js';
+import { today, next365Days } from '../../utils/date.js';
 
 import './AddDestinationForm.scss';
 

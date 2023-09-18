@@ -7,7 +7,7 @@ import Home from './Home/Home';
 import Itinerary from './Itinerary/Itinerary';
 import NavBar from '../components/NavBar/NavBar';
 // import Map from './components/Map/Map';
-import SignUpModal from './Home/RegistationModals/SignUpModal';
+import SignUpModal from '../components/RegistationModals/SignUpModal';
 
 import './App.scss';
 

@@ -1,4 +1,4 @@
-import { today, next365Days } from '../../../utils/date.js';
+import { today, next365Days } from '../../utils/date.js';
 
 const DateSelector = (props) => {
   return (

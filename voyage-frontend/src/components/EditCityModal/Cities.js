@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import fetchCities from '../../../services/citiesAPI';
+import fetchCities from '../../services/citiesAPI';
 
 const Cities = (props) => {
   useEffect(() => {

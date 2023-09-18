@@ -1,4 +1,4 @@
-import AddDestinationForm from './AddDestinationForm/AddDestinationForm';
+import AddDestinationForm from '../../../components/AddDestinationForm/AddDestinationForm';
 // import AddDestinationList from './AddDestinationList';
 
 import './AddDestination.scss';

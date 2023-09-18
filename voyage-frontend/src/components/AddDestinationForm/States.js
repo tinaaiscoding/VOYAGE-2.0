@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DestinationContext } from '../../DestinationContext';
+import { DestinationContext } from '../../pages/Home/DestinationContext';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 

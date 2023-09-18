@@ -4,6 +4,7 @@ import { DestinationContext } from '../Home/DestinationContext';
 import { fetchWeatherData } from '../../utils/fetchWeather';
 import Weather from '../../components/Weather/Weather';
 import ItineraryDesList from './ItineraryDesList';
+import AddDestinationForm from '../../components/AddDestinationForm/AddDestinationForm';
 
 import './Itinerary.scss';
 
@@ -14,8 +15,6 @@ const Itinerary = (props) => {
   const [cityPrevWeatherData, setCityPrevWeatherData] = useState([]);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [fetching, setFetching] = useState(false);
-
-  console.log('#####', fetching);
 
   const fetchWeatherDataHandler = (event) => {
     setCityPrevWeatherData([]);
@@ -50,6 +49,10 @@ const Itinerary = (props) => {
       <div className="itinerary-header">
         <h1>ITINERARY</h1>
       </div>
+
+      <div>
+        <AddDestinationForm />
+      </div>
       <div className="itinerary-destination-list itinerary-card">
         <ItineraryDesList
           renderEditModalHandler={renderEditModalHandler}
@@ -58,6 +61,7 @@ const Itinerary = (props) => {
           citySelected={citySelected}
           closeEditModalHandler={closeEditModalHandler}
           fetchWeatherDataHandler={fetchWeatherDataHandler}
+          setFetching={setFetching}
         />
       </div>
 

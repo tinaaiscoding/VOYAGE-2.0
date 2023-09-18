@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import fetchStates from '../../../services/statesAPI';
+import fetchStates from '../../services/statesAPI';
 
 const States = (props) => {
   useEffect(() => {
