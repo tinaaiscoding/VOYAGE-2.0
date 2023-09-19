@@ -1,10 +1,15 @@
 import React from 'react'
 
-const PackingListNavBar = () => {
+
+const PackingListNavBar = ({ setShowModal }) => {
+  const handleShowModal = () => {
+    setShowModal(true)
+  }
+
   return (
     <div>
-      <button>Clothing</button>
-      <button>Add</button>
+      <button className='button-80'>Clothing</button>
+      <button className='button-80' onClick={handleShowModal}>Add</button>
     </div>
   )
 }

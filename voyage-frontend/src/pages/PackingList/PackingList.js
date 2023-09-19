@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import NavBar from '../../components/PackingList/NavBar/NavBar';
 import ClothesList from '../../components/PackingList/ClothesList/ClothesList';
+import NewListModal from '../../components/PackingList/NewListModal/NewListModal';
 
 const PackingList = () => {
   const [gender, setGender] = useState(null)
+  const [showModal, setShowModal] = useState(false)
 
   const handleSelection = (event) => {
     setGender(event.target.id)
@@ -17,9 +19,11 @@ const PackingList = () => {
       <input type="radio" name="gender" id="male" onClick={handleSelection}/>
       <label htmlFor="male">Male</label>
 
-      <NavBar />
+      <NavBar setShowModal={setShowModal}/>
 
       <ClothesList gender={gender} />
+
+      {showModal && (<NewListModal setShowModal={setShowModal} />)}
     </div>
   );
 };
