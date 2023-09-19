@@ -6,6 +6,8 @@ import NewListModal from '../../components/PackingList/NewListModal/NewListModal
 const PackingList = () => {
   const [gender, setGender] = useState(null)
   const [showModal, setShowModal] = useState(false)
+  const [newList, setNewList] = useState([])
+  const [currentList, setCurrentList] = useState('clothing')
 
   const handleSelection = (event) => {
     setGender(event.target.id)
@@ -19,11 +21,11 @@ const PackingList = () => {
       <input type="radio" name="gender" id="male" onClick={handleSelection}/>
       <label htmlFor="male">Male</label>
 
-      <NavBar setShowModal={setShowModal}/>
+      <NavBar setShowModal={setShowModal} newList={newList} />
 
       <ClothesList gender={gender} />
 
-      {showModal && (<NewListModal setShowModal={setShowModal} />)}
+      {showModal && (<NewListModal setShowModal={setShowModal} newList={newList} setNewList={setNewList} />)}
     </div>
   );
 };
