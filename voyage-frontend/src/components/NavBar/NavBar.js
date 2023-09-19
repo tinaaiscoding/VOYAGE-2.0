@@ -15,6 +15,7 @@ const NavBar = (props) => {
         {/* <Link to="/add-destination">ADD DESTINATION</Link> */}
         <Link to="/itinerary">ITINERARY</Link>
         {/* <Link to="/map">MAP</Link> */}
+        <Link to="/packinglist">PACKING LIST</Link>
       </div>
 
       <button className="button-17" onClick={props.renderSignUpModalHandler}>

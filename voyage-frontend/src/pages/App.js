@@ -8,6 +8,7 @@ import Itinerary from './Itinerary/Itinerary';
 import NavBar from '../components/NavBar/NavBar';
 // import Map from './components/Map/Map';
 import SignUpModal from '../components/RegistationModals/SignUpModal';
+import PackingList from './PackingList/PackingList';
 
 import './App.scss';
 
@@ -21,20 +22,13 @@ function App() {
   const closeSignUpModalHandler = () => {
     setDisplaySignUpModal(false);
   };
-  
+
   return (
     <div className="App">
       <NavBar renderSignUpModalHandler={renderSignUpModalHandler} />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <DestinationContextProvider>
-              <Home />
-            </DestinationContextProvider>
-          }
-        />
+        <Route path="/packinglist" element={<PackingList />} />
 
         <Route
           path="/itinerary"
@@ -55,6 +49,14 @@ function App() {
             />
           }
         /> */}
+        <Route
+          path="/"
+          element={
+            <DestinationContextProvider>
+              <Home />
+            </DestinationContextProvider>
+          }
+        />
       </Routes>
 
       {displaySignUpModal && (
