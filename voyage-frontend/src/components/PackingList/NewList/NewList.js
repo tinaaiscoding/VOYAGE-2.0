@@ -1,8 +1,10 @@
 import React from 'react'
 
-const NewList = () => {
+const NewList = ({ currentList }) => {
   return (
-    <div>New List</div>
+    <div>
+      <h1>{ currentList }</h1>
+    </div>
   )
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Modal from '../../../components/UI/Modal'
 import './NewListModal.scss'
 
-const NewListModal = ({ setShowModal, newList, setNewList }) => {
+const NewListModal = ({ setShowModal, packingList, setPackingList }) => {
   const [newListName, setNewListName] = useState('')
 
   const handleCloseModal = () => {
@@ -11,7 +11,7 @@ const NewListModal = ({ setShowModal, newList, setNewList }) => {
 
   const handleAddPackingList = (event) => {
     event.preventDefault()
-    setNewList([...newList, newListName])
+    setPackingList([...packingList, newListName])
     setShowModal(false)
   }
 

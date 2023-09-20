@@ -1,18 +1,29 @@
 import React from 'react';
 
-const PackingListNavBar = ({ setShowModal, newList }) => {
+const PackingListNavBar = ({ setShowModal, packingList, setCurrentList }) => {
   const handleShowModal = () => {
     setShowModal(true);
   };
 
-  console.log(newList);
+  const handleShowNewList = (event) => {
+    setCurrentList(event.target.name);
+  };
 
   return (
     <div>
-      <button className="button-80">Clothing</button>
+      <button onClick={handleShowNewList} name="clothing" className="button-80">
+        Clothing
+      </button>
 
-      {newList.map((list, id) => (
-        <button key={id} className="button-80">{list}</button>
+      {packingList.map((list, id) => (
+        <button
+          key={id}
+          name={list}
+          className="button-80"
+          onClick={handleShowNewList}
+        >
+          {list}
+        </button>
       ))}
 
       <button className="button-80" onClick={handleShowModal}>
