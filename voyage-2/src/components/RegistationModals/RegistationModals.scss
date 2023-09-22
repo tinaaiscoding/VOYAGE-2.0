@@ -5,7 +5,7 @@ label {
 #SignUp-Modal,
 #Login-Modal {
   padding: 0;
-  height: 375px;
+  text-align: center;
 
   input {
     display: inline-block;
@@ -50,4 +50,11 @@ label {
 
 #Login-Modal {
   height: 300px;
+}
+#SignUp-Modal {
+  height: 440px;
+  .flex {
+    display: flex;
+    justify-content: center
+  }
 }

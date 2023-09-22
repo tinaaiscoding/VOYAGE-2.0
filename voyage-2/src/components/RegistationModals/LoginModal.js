@@ -47,10 +47,10 @@ const LogInModal = (props) => {
         </nav>
 
         <form>
-          <label>EMAIL:</label>
+          <label>EMAIL</label>
           <input type="text" />
 
-          <label>PASSWORD:</label>
+          <label>PASSWORD</label>
           <input type="password" />
 
           <button className="button-80">LOG IN</button>
