@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import { DestinationContextProvider } from './Home/DestinationContext';
-
 import Home from './Home/Home';
 import Itinerary from './Itinerary/Itinerary';
 import NavBar from '../components/NavBar/NavBar';
@@ -27,6 +25,9 @@ function App() {
     <div className="App">
       <NavBar renderSignUpModalHandler={renderSignUpModalHandler} />
 
+      {displaySignUpModal && (
+        <SignUpModal onModalClose={closeSignUpModalHandler} />
+      )}
       <Routes>
         <Route path="/packinglist" element={<PackingList />} />
 
@@ -38,17 +39,6 @@ function App() {
             </DestinationContextProvider>
           }
         />
-        {/* <Route
-          path="/map"
-          element={
-            <Map
-              markerInfo={markerInfo}
-              setMarkerInfo={setMarkerInfo}
-              markerList={markerList}
-              setMarkerList={setMarkerList}
-            />
-          }
-        /> */}
         <Route
           path="/"
           element={
@@ -58,10 +48,6 @@ function App() {
           }
         />
       </Routes>
-
-      {displaySignUpModal && (
-        <SignUpModal onModalClose={closeSignUpModalHandler} />
-      )}
     </div>
   );
 }

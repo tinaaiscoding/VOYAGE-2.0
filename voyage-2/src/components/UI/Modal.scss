@@ -1,12 +1,11 @@
 /* MODAL BASE */
 .modal {
-  position: relative;
+  position: absolute;
   z-index: 100;
   background: white;
   border-radius: 10px;
   width: 30%;
   height: 400px;
-  top: -50vh;
   left: 34%;
   box-shadow: 12px 11px 1px 0px rgb(0 0 0 / 26%);
   display: block;

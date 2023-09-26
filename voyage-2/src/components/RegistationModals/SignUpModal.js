@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoginModal from './LoginModal';
 import Modal from '../UI/Modal';
 import { supabase } from '../../config/supabase';
@@ -9,8 +9,8 @@ const SignUpModal = (props) => {
   const [displayLoginModal, setDisplayLoginModal] = useState(false);
   const [userMetaData, setUserMetaData] = useState({
     name: '',
-    gender: ''
-  })
+    gender: '',
+  });
 
   const [userData, setUserData] = useState({
     email: '',
@@ -20,25 +20,32 @@ const SignUpModal = (props) => {
     },
   });
 
-
   const handleUserDataChange = (event) => {
-    setUserData({...userData, 
-    [event.target.name]: event.target.value})
-  }
+    setUserData({ ...userData, [event.target.name]: event.target.value });
+  };
 
   const handleUserMetaDataChange = (event) => {
-    setUserMetaData({...userMetaData, 
-      [event.target.name]: event.target.value})
-  }
+    setUserMetaData({
+      ...userMetaData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-  console.log('meta data', userMetaData)
+  useEffect(() => {
+    setUserData({
+      ...userData,
+      options: {
+        data: userMetaData,
+      },
+    });
+  }, [userMetaData]);
 
   const handleSignUp = async (event) => {
     event.preventDefault();
 
     const { data, error } = await supabase.auth.signUp(userData);
-
-    if (!data) {
+ 
+    if (data.user === null || data.session === null) {
       console.log(error);
     }
   };
@@ -82,21 +89,48 @@ const SignUpModal = (props) => {
           </ul>
         </nav>
 
-        <form>
+        <form onSubmit={handleSignUp}>
           <label>NAME</label>
-          <input type="text" name='name' value={userMetaData.name} onChange={handleUserMetaDataChange} />
+          <input
+            type="text"
+            name="name"
+            value={userMetaData.name}
+            onChange={handleUserMetaDataChange}
+          />
 
           <label>EMAIL</label>
-          <input type="text" name='email' value={userData.email} onChange={handleUserDataChange} />
+          <input
+            type="text"
+            name="email"
+            value={userData.email}
+            onChange={handleUserDataChange}
+          />
 
           <label>PASSWORD</label>
-          <input type="password" name='password' value={userData.email} onChange={handleUserDataChange} />
+          <input
+            type="password"
+            name="password"
+            value={userData.password}
+            onChange={handleUserDataChange}
+          />
 
           <label>GENDER</label>
           <div className="flex">
-            <input type="radio" name="gender" id="female" onChange={handleUserMetaDataChange} />
+            <input
+              type="radio"
+              name="gender"
+              id="female"
+              value="female"
+              onChange={handleUserMetaDataChange}
+            />
             <label htmlFor="female">Female</label>
-            <input type="radio" name="gender" id="male" onChange={handleUserMetaDataChange} />
+            <input
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+              onChange={handleUserMetaDataChange}
+            />
             <label htmlFor="male">Male</label>
           </div>
 
