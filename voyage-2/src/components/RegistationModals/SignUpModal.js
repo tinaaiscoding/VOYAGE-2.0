@@ -5,7 +5,7 @@ import { supabase } from '../../config/supabase';
 
 import './RegistationModals.scss';
 
-const SignUpModal = (props) => {
+const SignUpModal = ({ onModalClose }) => {
   const [displayLoginModal, setDisplayLoginModal] = useState(false);
   const [userMetaData, setUserMetaData] = useState({
     name: '',
@@ -45,13 +45,11 @@ const SignUpModal = (props) => {
 
     const { data, error } = await supabase.auth.signUp(userData);
  
-    if (data.user === null || data.session === null) {
+    if (error) {
       console.log(error);
+    } else {
+      onModalClose();
     }
-  };
-
-  const closeSignUpModalHandler = () => {
-    props.onModalClose();
   };
 
   const renderLoginModalHandler = () => {
@@ -60,7 +58,7 @@ const SignUpModal = (props) => {
 
   const closeLoginModalHandler = () => {
     setDisplayLoginModal(false);
-    props.onModalClose();
+    onModalClose();
   };
 
   const signUpNavSelected = {
@@ -76,7 +74,7 @@ const SignUpModal = (props) => {
       <Modal id="SignUp-Modal">
         <span
           className="material-symbols-outlined"
-          onClick={closeSignUpModalHandler}
+          onClick={onModalClose}
         >
           close
         </span>

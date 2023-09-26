@@ -1,32 +1,52 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { DestinationContextProvider } from './Home/DestinationContext';
+import { supabase } from '../config/supabase';
 import Home from './Home/Home';
 import Itinerary from './Itinerary/Itinerary';
 import NavBar from '../components/NavBar/NavBar';
-// import Map from './components/Map/Map';
-import SignUpModal from '../components/RegistationModals/SignUpModal';
+import LogInModal from '../components/RegistationModals/LoginModal';
 import PackingList from './PackingList/PackingList';
 
 import './App.scss';
 
 function App() {
-  const [displaySignUpModal, setDisplaySignUpModal] = useState(false);
+  const [displayLoginModal, setDisplayLoginModal] = useState(false);
+  const [session, setSession] = useState(null);
 
-  const renderSignUpModalHandler = () => {
-    setDisplaySignUpModal(true);
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const renderLoginModalHandler = () => {
+    setDisplayLoginModal(true);
   };
 
-  const closeSignUpModalHandler = () => {
-    setDisplaySignUpModal(false);
+  const closeLoginModalHandler = () => {
+    setDisplayLoginModal(false);
   };
 
   return (
     <div className="App">
-      <NavBar renderSignUpModalHandler={renderSignUpModalHandler} />
+      <NavBar
+        renderLoginModalHandler={renderLoginModalHandler}
+        session={session}
+      />
 
-      {displaySignUpModal && (
-        <SignUpModal onModalClose={closeSignUpModalHandler} />
+      {displayLoginModal && (
+        <LogInModal
+          onModalClose={closeLoginModalHandler}
+        />
       )}
       <Routes>
         <Route path="/packinglist" element={<PackingList />} />
