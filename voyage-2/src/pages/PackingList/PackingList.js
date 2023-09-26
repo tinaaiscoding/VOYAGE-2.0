@@ -1,30 +1,39 @@
-import React, { useState } from 'react';
-import NavBar from '../../components/PackingList/NavBar/NavBar';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '../../config/supabase';
+
 import ClothesList from '../../components/PackingList/ClothesList/ClothesList';
-import NewListModal from '../../components/PackingList/NewListModal/NewListModal';
+import NavBar from '../../components/PackingList/NavBar/NavBar';
 import NewList from '../../components/PackingList/NewList/NewList';
+import NewListModal from '../../components/PackingList/NewListModal/NewListModal';
 
 const PackingList = () => {
   const [gender, setGender] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [packingList, setPackingList] = useState([]);
   const [currentList, setCurrentList] = useState('clothing');
+  const [packingList, setPackingList] = useState([]);
+
+  useEffect(() => {
+    const getGender = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+
+      let gender = user.user_metadata.gender;
+
+      setGender(gender);
+
+      if (error) {
+        console.log(error);
+      }
+    };
+
+    getGender();
+  }, []);
 
   return (
     <div>
       <h1>Packing List</h1>
-
-      <NavBar
-        setShowModal={setShowModal}
-        packingList={packingList}
-        setCurrentList={setCurrentList}
-      />
-
-      {currentList === 'clothing' ? (
-        <ClothesList gender={gender} />
-      ) : (
-        <NewList currentList={currentList} />
-      )}
 
       {showModal && (
         <NewListModal
@@ -32,6 +41,19 @@ const PackingList = () => {
           packingList={packingList}
           setPackingList={setPackingList}
         />
+      )}
+
+      <NavBar
+        setShowModal={setShowModal}
+        setCurrentList={setCurrentList}
+        packingList={packingList}
+        setPackingList={setPackingList}
+      />
+
+      {currentList === 'clothing' ? (
+        <ClothesList gender={gender} />
+      ) : (
+        <NewList currentList={currentList} />
       )}
     </div>
   );

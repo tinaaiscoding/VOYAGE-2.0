@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import SignUpModal from './SignUpModal';
 import Modal from '../UI/Modal';
+import { supabase } from '../../config/supabase';
 
 import './RegistationModals.scss';
 
-const LogInModal = (props) => {
-  const closeLoginModalHandler = () => {
-    props.onModalClose();
-  };
-
+const LogInModal = ({ onModalClose }) => {
   const [displaySignUpModal, setDisplaySignUpModal] = useState(false);
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+  });
 
   const renderSignUpModalHandler = () => {
     setDisplaySignUpModal(true);
@@ -17,7 +18,23 @@ const LogInModal = (props) => {
 
   const closeSignUpModalHandler = () => {
     setDisplaySignUpModal(false);
-    props.onModalClose();
+    onModalClose();
+  };
+
+  const handleUserDataChange = (event) => {
+    setUserData({ ...userData, [event.target.name]: event.target.value });
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+
+    const { data, error } = await supabase.auth.signInWithPassword(userData);
+
+    if (error) {
+      console.log(error);
+    } else {
+      onModalClose();
+    }
   };
 
   const loginNavSelected = {
@@ -31,10 +48,7 @@ const LogInModal = (props) => {
   } else {
     return (
       <Modal id="Login-Modal">
-        <span
-          className="material-symbols-outlined"
-          onClick={closeLoginModalHandler}
-        >
+        <span className="material-symbols-outlined" onClick={onModalClose}>
           close
         </span>
         <nav>
@@ -46,12 +60,22 @@ const LogInModal = (props) => {
           </ul>
         </nav>
 
-        <form>
+        <form onSubmit={handleLogin}>
           <label>EMAIL</label>
-          <input type="text" />
+          <input
+            type="text"
+            name="email"
+            value={userData.email}
+            onChange={handleUserDataChange}
+          />
 
           <label>PASSWORD</label>
-          <input type="password" />
+          <input
+            type="password"
+            name="password"
+            value={userData.password}
+            onChange={handleUserDataChange}
+          />
 
           <button className="button-80">LOG IN</button>
         </form>

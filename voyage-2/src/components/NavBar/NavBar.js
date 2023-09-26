@@ -1,26 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/images/voyage-logo.png';
+import { supabase } from '../../config/supabase';
+import { useNavigate } from 'react-router-dom';
 
 import './NavBar.scss';
 
-import logo from '../../assets/images/voyage-logo.png';
+const NavBar = ({ renderLoginModalHandler, session }) => {
+  const navigate = useNavigate();
 
-const NavBar = (props) => {
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.log(error);
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <nav id="nav-bar">
       <img className="logo" src={logo} alt="voyage-logo" />
 
       <div>
         <Link to="/">HOME</Link>
-        {/* <Link to="/add-destination">ADD DESTINATION</Link> */}
         <Link to="/itinerary">ITINERARY</Link>
-        {/* <Link to="/map">MAP</Link> */}
-        <Link to="/packinglist">PACKING LIST</Link>
+        {session && <Link to="/packinglist">PACKING LIST</Link>}
       </div>
 
-      <button className="button-17" onClick={props.renderSignUpModalHandler}>
-        SIGN UP
-      </button>
+      {session ? (
+        <button className="button-17" onClick={handleLogout}>
+          LOG OUT
+        </button>
+      ) : (
+        <button className="button-17" onClick={renderLoginModalHandler}>
+          LOGIN
+        </button>
+      )}
     </nav>
   );
 };

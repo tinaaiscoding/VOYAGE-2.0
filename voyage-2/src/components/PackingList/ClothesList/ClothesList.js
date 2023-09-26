@@ -58,8 +58,8 @@ const ClothesList = ({ gender }) => {
         femaleClothingList.map((item, id) => {
           return (
             <div key={id}>
-              <input type="checkbox" name={item} id={item} />
               <label htmlFor={item}>{item}</label>
+              <input type="checkbox" name={item} id={item} />
             </div>
           );
         })}
@@ -67,8 +67,8 @@ const ClothesList = ({ gender }) => {
         maleClothingList.map((item, id) => {
           return (
             <div key={id}>
-              <input type="checkbox" name={item} id={item} />
               <label htmlFor={item}>{item}</label>
+              <input type="checkbox" name={item} id={item} />
             </div>
           );
         })}
