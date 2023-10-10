@@ -46,7 +46,7 @@ const NewList = ({ currentList }) => {
         .update({ checked: !checked })
         .eq('id', itemId)
         .select()
-        .order('create_at', { ascending: true })
+        .order('created_at', { ascending: true })
 
       console.log(data);
       if (error) {
