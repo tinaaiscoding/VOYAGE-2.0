@@ -7,6 +7,9 @@ const NewList = ({ currentList }) => {
   const [currentListId, setCurrentListId] = useState(null);
   const [checked, setChecked] = useState(null);
   const [itemId, setItemId] = useState(null);
+  const [editing, setEditing] = useState(false);
+  const [editId, setEditId] = useState(false);
+  const [editItem, setEditItem] = useState('');
 
   const getPackingListItems = async () => {
     const { data, error } = await supabase
@@ -35,7 +38,6 @@ const NewList = ({ currentList }) => {
         console.log(error);
       }
     };
-
     getCurrentListId();
   }, [currentList]);
 
@@ -94,6 +96,37 @@ const NewList = ({ currentList }) => {
     }
   }, [checked]);
 
+  const handleEdit = (event) => {
+    setEditing(true);
+    setEditId(event.target.id);
+  };
+
+  const handleSaveEdit = async (event) => {
+    event.preventDefault();
+    setEditing(false);
+    const { data, error } = await supabase
+      .from('packing_item')
+      .update({ name: editItem })
+      .eq('id', editId)
+      .select();
+
+    if (error) {
+      console.log(error);
+    } else {
+      getPackingListItems();
+    }
+  };
+
+  const handleDelete = async (event) => {
+    const { error } = await supabase.from('packing_item').delete().eq('id', event.target.id);
+
+    if (error) {
+      console.log(error);
+    } else {
+      getPackingListItems();
+    }
+  };
+
   return (
     <div>
       <h1>{currentList}</h1>
@@ -101,7 +134,30 @@ const NewList = ({ currentList }) => {
       {packingListItems.map((item) => {
         return (
           <div key={item.id}>
-            <label htmlFor={item.name}>{item.name}</label>
+            {editing && editId == item.id ? (
+              <form onSubmit={handleSaveEdit}>
+                <input
+                  type="text"
+                  defaultValue={item.name}
+                  onChange={(event) => {
+                    setEditItem(event.target.value);
+                  }}
+                />
+                <button>Save</button>
+                <span
+                  id={item.id}
+                  className="material-symbols-outlined"
+                  onClick={handleDelete}
+                >
+                  delete
+                </span>
+              </form>
+            ) : (
+              <label id={item.id} htmlFor={item.name} onClick={handleEdit}>
+                {item.name}
+              </label>
+            )}
+
             <input
               id={item.id}
               name={item.name}
