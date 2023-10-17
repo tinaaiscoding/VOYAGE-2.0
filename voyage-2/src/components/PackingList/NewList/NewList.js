@@ -29,7 +29,7 @@ const NewList = ({ currentList }) => {
   const handleCheckItem = async (event) => {
     setItemId(event.target.id);
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('packing_item')
       .select('checked')
       .eq('id', event.target.id);
@@ -39,22 +39,20 @@ const NewList = ({ currentList }) => {
 
   useEffect(() => {
     const updateCheckedItem = async () => {
-      console.log('currently', checked);
-      console.log(itemId);
       const { data, error } = await supabase
         .from('packing_item')
         .update({ checked: !checked })
         .eq('id', itemId)
         .select()
-        .order('created_at', { ascending: true })
+        .order('created_at', { ascending: true });
 
-      console.log(data);
       if (error) {
         console.log(error);
       }
     };
     if (itemId !== null && checked !== null) {
       updateCheckedItem();
+      setChecked(null);
     }
   }, [checked]);
 
@@ -63,7 +61,7 @@ const NewList = ({ currentList }) => {
       const { data, error } = await supabase
         .from('packing_list')
         .select('id')
-        .eq('name', currentList)
+        .eq('name', currentList);
 
       setCurrentListId(data[0].id);
 
