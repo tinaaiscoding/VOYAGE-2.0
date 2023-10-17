@@ -8,6 +8,43 @@ const NewList = ({ currentList }) => {
   const [checked, setChecked] = useState(null);
   const [itemId, setItemId] = useState(null);
 
+  const getPackingListItems = async () => {
+    const { data, error } = await supabase
+      .from('packing_item')
+      .select()
+      .eq('packing_list_id', currentListId)
+      .order('created_at', { ascending: true });
+
+    setPackingListItems(data);
+
+    if (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const getCurrentListId = async () => {
+      const { data, error } = await supabase
+        .from('packing_list')
+        .select('id')
+        .eq('name', currentList);
+
+      setCurrentListId(data[0].id);
+
+      if (error) {
+        console.log(error);
+      }
+    };
+
+    getCurrentListId();
+  }, [currentList]);
+
+  useEffect(() => {
+    if (currentListId !== null) {
+      getPackingListItems();
+    }
+  }, [currentListId, checked]);
+
   const handleAddNewPackingItem = async (event) => {
     event.preventDefault();
 
@@ -22,6 +59,7 @@ const NewList = ({ currentList }) => {
     if (error) {
       console.log(error);
     } else {
+      getPackingListItems();
       setItem('');
     }
   };
@@ -43,54 +81,18 @@ const NewList = ({ currentList }) => {
         .from('packing_item')
         .update({ checked: !checked })
         .eq('id', itemId)
-        .select()
-        .order('created_at', { ascending: true });
+        .select();
 
       if (error) {
         console.log(error);
       }
     };
+
     if (itemId !== null && checked !== null) {
       updateCheckedItem();
       setChecked(null);
     }
   }, [checked]);
-
-  useEffect(() => {
-    const getCurrentListId = async () => {
-      const { data, error } = await supabase
-        .from('packing_list')
-        .select('id')
-        .eq('name', currentList);
-
-      setCurrentListId(data[0].id);
-
-      if (error) {
-        console.log(error);
-      }
-    };
-
-    getCurrentListId();
-  }, [currentList]);
-
-  useEffect(() => {
-    const getPackingListItems = async () => {
-      const { data, error } = await supabase
-        .from('packing_item')
-        .select()
-        .eq('packing_list_id', currentListId);
-
-      setPackingListItems(data);
-
-      if (error) {
-        console.log(error);
-      }
-    };
-
-    if (currentListId !== null) {
-      getPackingListItems();
-    }
-  }, [currentListId]);
 
   return (
     <div>
