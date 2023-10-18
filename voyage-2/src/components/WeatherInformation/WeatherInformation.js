@@ -1,18 +1,18 @@
 import React from 'react';
-import './Weather.scss';
+import './WeatherInformation.scss';
 
-const Weather = ({ cityPrevWeatherData, citySelected }) => {
+const WeatherInformation = ({ cityWeatherData, citySelected }) => {
   return (
     <div className="content">
-      {cityPrevWeatherData.length > 0 ? (
+      {cityWeatherData.length > 0 ? (
         <>
           <h4>
             {citySelected.city}, {citySelected.state}, {citySelected.country}
           </h4>
           <span className="last-year-avg-temp">
             {(
-              cityPrevWeatherData.reduce((a, b) => a + b, 0) /
-              cityPrevWeatherData.length
+              cityWeatherData.reduce((a, b) => a + b, 0) /
+              cityWeatherData.length
             ).toFixed(2)}{' '}
             °C
           </span>
@@ -28,4 +28,4 @@ const Weather = ({ cityPrevWeatherData, citySelected }) => {
   );
 };
 
-export default Weather;
+export default WeatherInformation;

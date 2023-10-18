@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { DestinationContext } from '../Home/DestinationContext';
 
 import { fetchWeatherData } from '../../utils/fetchWeather';
-import Weather from '../../components/Weather/Weather';
+import WeatherInformation from '../../components/WeatherInformation/WeatherInformation';
 import ItineraryDesList from './ItineraryDesList';
 import AddDestinationForm from '../../components/AddDestinationForm/AddDestinationForm';
 
@@ -12,14 +12,14 @@ const Itinerary = (props) => {
   const { destinationList, setDestinationList } =
     useContext(DestinationContext);
   const [citySelected, setCitySelected] = useState({});
-  const [cityPrevWeatherData, setCityPrevWeatherData] = useState([]);
+  const [cityWeatherData, setCityWeatherData] = useState([]);
   const [displayEditModal, setDisplayEditModal] = useState(false);
   const [fetching, setFetching] = useState(false);
 
   const fetchWeatherDataHandler = (event) => {
-    setCityPrevWeatherData([]);
+    setCityWeatherData([]);
     setFetching(true);
-    fetchWeatherData(event, setCityPrevWeatherData, setCitySelected);
+    fetchWeatherData(event, setCityWeatherData, setCitySelected);
   };
 
   const deleteCityHandler = (indexOfCity) => {
@@ -71,8 +71,8 @@ const Itinerary = (props) => {
             <h2>AVERAGE WEATHER</h2>
           </div>
           {fetching ? (
-            <Weather
-              cityPrevWeatherData={cityPrevWeatherData}
+            <WeatherInformation
+              cityWeatherData={cityWeatherData}
               citySelected={citySelected}
             />
           ) : (

@@ -1,4 +1,5 @@
-import { getGeoLocation, getWeather } from '../services/weatherAPI';
+import { getWeather } from '../services/weatherAPI';
+import { geoLocation } from '../services/geoLocationAPI';
 
 const fetchWeatherData = (event, setCityPrevWeatherData, setCitySelected) => {
   const location = event.target.textContent;
@@ -15,7 +16,7 @@ const fetchWeatherData = (event, setCityPrevWeatherData, setCitySelected) => {
   dateTo.splice(0, 1, Number(dateTo[0]) - 1);
   dateTo = dateTo.join('-');
 
-  getGeoLocation(location)
+  geoLocation(location)
     .then((geoLocation) =>
       getWeather(geoLocation.lat, geoLocation.lng, dateFrom, dateTo)
     )
