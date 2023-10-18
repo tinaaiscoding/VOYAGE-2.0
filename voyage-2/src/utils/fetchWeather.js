@@ -1,7 +1,7 @@
 import { getWeather } from '../services/weatherAPI';
 import { geoLocation } from '../services/geoLocationAPI';
 
-const fetchWeatherData = (event, setCityPrevWeatherData, setCitySelected) => {
+const fetchWeatherData = (event, setCitySelected, setCityWeatherData) => {
   const location = event.target.textContent;
   const dateSpan = event.target.nextSibling;
 
@@ -21,7 +21,7 @@ const fetchWeatherData = (event, setCityPrevWeatherData, setCitySelected) => {
       getWeather(geoLocation.lat, geoLocation.lng, dateFrom, dateTo)
     )
     .then((weatherData) =>
-      setCityPrevWeatherData(weatherData.daily.temperature_2m_mean)
+      setCityWeatherData(weatherData.daily.temperature_2m_mean)
     );
 
   setCitySelected((prevState) => {

@@ -1,23 +1,44 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { DestinationContext } from '../Home/DestinationContext';
 
 import EditCityModal from '../../components/EditCityModal/EditCityModal';
 
 const ItineraryDesList = ({
-  renderEditModalHandler,
-  deleteCityHandler,
-  displayEditModal,
   citySelected,
-  closeEditModalHandler,
+  setCitySelected,
   fetchWeatherDataHandler,
   setFetching,
 }) => {
   const { destinationList, setDestinationList } =
     useContext(DestinationContext);
 
+  const [displayEditModal, setDisplayEditModal] = useState(false);
+
   const handleClearList = () => {
     setDestinationList([]);
     setFetching(false);
+  };
+
+  const deleteCityHandler = (indexOfCity) => {
+    const remainingCities = destinationList.filter(
+      (city, i) => i !== indexOfCity
+    );
+
+    setDestinationList(remainingCities);
+  };
+
+  const renderEditModalHandler = (indexOfCity) => {
+    setCitySelected((prevState) => {
+      return {
+        ...prevState,
+        index: indexOfCity,
+      };
+    });
+    setDisplayEditModal(true);
+  };
+
+  const closeEditModalHandler = () => {
+    setDisplayEditModal(false);
   };
 
   return (

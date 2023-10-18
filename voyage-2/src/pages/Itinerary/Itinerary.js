@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { DestinationContext } from '../Home/DestinationContext';
+import { useState } from 'react';
 
 import { fetchWeatherData } from '../../utils/fetchWeather';
 import WeatherInformation from '../../components/WeatherInformation/WeatherInformation';
@@ -8,40 +7,15 @@ import AddDestinationForm from '../../components/AddDestinationForm/AddDestinati
 
 import './Itinerary.scss';
 
-const Itinerary = (props) => {
-  const { destinationList, setDestinationList } =
-    useContext(DestinationContext);
+const Itinerary = () => {
   const [citySelected, setCitySelected] = useState({});
   const [cityWeatherData, setCityWeatherData] = useState([]);
-  const [displayEditModal, setDisplayEditModal] = useState(false);
   const [fetching, setFetching] = useState(false);
 
   const fetchWeatherDataHandler = (event) => {
     setCityWeatherData([]);
     setFetching(true);
-    fetchWeatherData(event, setCityWeatherData, setCitySelected);
-  };
-
-  const deleteCityHandler = (indexOfCity) => {
-    const remainingCities = destinationList.filter(
-      (city, i) => i !== indexOfCity
-    );
-
-    setDestinationList(remainingCities);
-  };
-
-  const renderEditModalHandler = (indexOfCity) => {
-    setCitySelected((prevState) => {
-      return {
-        ...prevState,
-        index: indexOfCity,
-      };
-    });
-    setDisplayEditModal(true);
-  };
-
-  const closeEditModalHandler = () => {
-    setDisplayEditModal(false);
+    fetchWeatherData(event, setCitySelected, setCityWeatherData);
   };
 
   return (
@@ -55,11 +29,8 @@ const Itinerary = (props) => {
       </div>
       <div className="itinerary-destination-list itinerary-card">
         <ItineraryDesList
-          renderEditModalHandler={renderEditModalHandler}
-          deleteCityHandler={deleteCityHandler}
-          displayEditModal={displayEditModal}
           citySelected={citySelected}
-          closeEditModalHandler={closeEditModalHandler}
+          setCitySelected={setCitySelected}
           fetchWeatherDataHandler={fetchWeatherDataHandler}
           setFetching={setFetching}
         />

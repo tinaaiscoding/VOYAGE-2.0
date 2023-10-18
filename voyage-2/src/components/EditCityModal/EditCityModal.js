@@ -2,29 +2,20 @@ import { useContext, useEffect, useState } from 'react';
 import { DestinationContext } from '../../pages/Home/DestinationContext';
 
 import Modal from '../../components/UI/Modal';
-import Cities from './Cities';
-import Countries from './Countries';
+import {
+  GeoapifyGeocoderAutocomplete,
+  GeoapifyContext,
+} from '@geoapify/react-geocoder-autocomplete';
 import DateSelector from './DateSelector';
-import States from './States';
 
 import './EditCityModal.scss';
+import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 
-const EditCityModal = (props) => {
-  const {
-    destinationList,
-    setDestinationList,
-    countryList,
-    stateList,
-    cityList,
-  } = useContext(DestinationContext);
+const EditCityModal = ({ index, onModalClose }) => {
+  const { destinationList, setDestinationList } =
+    useContext(DestinationContext);
 
-  const [initialCountryCode, setInitialCountryCode] = useState('');
-  const [initialStateCode, setInitialStateCode] = useState('');
-  const [editData, setEditData] = useState(destinationList[props.index]);
-  const [countryCode, setCountryCode] = useState(initialCountryCode);
-  const [stateCode, setStateCode] = useState(initialStateCode);
-  const [editStateList, setEditStateList] = useState(stateList);
-  const [editCityList, setEditCityList] = useState(cityList);
+  const [editData, setEditData] = useState(destinationList[index]);
 
   const changeHandler = (event) => {
     setEditData((prevState) => {
@@ -38,51 +29,21 @@ const EditCityModal = (props) => {
   const editHandler = (event) => {
     event.preventDefault();
 
-    destinationList.splice(props.index, 1, editData);
+    destinationList.splice(index, 1, editData);
 
     setDestinationList(destinationList);
-    props.onModalClose();
+    onModalClose();
   };
 
-  useEffect(() => {
-    countryList.forEach((countryItem) => {
-      if (countryItem.name === destinationList[props.index].country) {
-        setInitialCountryCode(countryItem.iso2);
-      }
-    });
+  const handlePlaceSelect = (value) => {
+    console.log('Search section: ', value);
+  };
 
-    stateList.forEach((stateItem) => {
-      if (stateItem.name === destinationList[props.index].state) {
-        setInitialStateCode(stateItem.iso2);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    countryList.forEach((countryItem) => {
-      if (countryItem.name === editData.country) {
-        setCountryCode(countryItem.iso2);
-        setEditData((prevState) => {
-          return {
-            ...prevState,
-          };
-        });
-      }
-    });
-    setStateCode('');
-  }, [editData.country]);
-
-  useEffect(() => {
-    editStateList.forEach((stateItem) => {
-      if (stateItem.name === editData.state) {
-        setStateCode(stateItem.iso2);
-      }
-    });
-  }, [editData.state]);
+  console.log('edit data', editData)
 
   return (
     <Modal id="Edit-City-Modal">
-      <span className="material-symbols-outlined" onClick={props.onModalClose}>
+      <span className="material-symbols-outlined" onClick={onModalClose}>
         close
       </span>
       <div className="header">
@@ -91,26 +52,16 @@ const EditCityModal = (props) => {
 
       <div className="content">
         <form className="Edit-Destination-Form" onSubmit={editHandler}>
-          <Countries
-            changeHandler={changeHandler}
-            selectedCountry={editData.country}
-          />
-          <States
-            changeHandler={changeHandler}
-            selectedState={editData.state}
-            countryCode={countryCode}
-            editStateList={editStateList}
-            setEditStateList={setEditStateList}
-          />
-          <Cities
-            changeHandler={changeHandler}
-            selectedCity={editData.city}
-            editData={editData}
-            countryCode={countryCode}
-            stateCode={stateCode}
-            editCityList={editCityList}
-            setEditCityList={setEditCityList}
-          />
+        <GeoapifyContext apiKey={process.env.REACT_APP_GEOAPIFY_KEY}>
+      <GeoapifyGeocoderAutocomplete
+        placeholder="Enter city here"
+        type="city"
+        lang="en"
+        limit={5}
+        value={`${editData.city}, ${editData.state},${editData.country}`}
+        placeSelect={handlePlaceSelect}
+      />
+    </GeoapifyContext>
           <DateSelector
             changeHandler={changeHandler}
             selectedDateFrom={editData.dateFrom}
